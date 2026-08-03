@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apartamento Valdelagrana · El Puerto de Santa María · Cádiz</title>
+<meta name="description" content="Apartamento de 45 m² con terraza a 150 m de la playa de Valdelagrana, El Puerto de Santa María, Cádiz. Piscina, parking, WiFi. Alquiler por quincenas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --foam:#8fb0ab;
+    --foam-deep:#4a717a;
+    --foam-dark:#3a5a62;
+    --foam-ink:#2c484e;
+    --sand:#e4dac8;
+    --sand-light:#f5f0e6;
+    --cream:#faf8f2;
+    --ink:#2d3434;
+    --muted:#6d7673;
+    --white:#ffffff;
+    --radius:14px;
+    --shadow:0 6px 26px rgba(60,85,90,.09);
+    --line:rgba(60,90,95,.14);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4,.kicker,.brand{font-family:'Inter',system-ui,-apple-system,sans-serif}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+
+  /* ---------- Nav ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(250,248,242,.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
+  .brand{display:flex;align-items:center;gap:10px;color:var(--foam-ink);font-weight:600;font-size:1.15rem;letter-spacing:.02em}
+  .brand .dot{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--foam),var(--foam-deep));display:grid;place-items:center;color:#fff}
+  .nav-links{display:flex;gap:24px;font-weight:400;font-size:.95rem;color:var(--foam-ink)}
+  .nav-links a:hover{color:var(--foam-deep)}
+  .lang-switch{display:flex;gap:4px;background:var(--sand-light);padding:4px;border-radius:999px;border:1px solid var(--line)}
+  .lang-switch button{
+    border:0;background:transparent;cursor:pointer;
+    font-family:'Inter',sans-serif;font-weight:600;font-size:.85rem;
+    padding:6px 11px;border-radius:999px;color:var(--muted);
+  }
+  .lang-switch button.active{background:var(--foam-deep);color:#fff}
+  .hamburger{display:none}
+  @media (max-width:760px){
+    .nav-links{display:none}
+    .hamburger{display:block;background:var(--sand-light);border:1px solid var(--line);border-radius:10px;padding:8px 10px;cursor:pointer}
+    .nav-links.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--cream);padding:16px 22px;box-shadow:var(--shadow);border-bottom:1px solid var(--line)}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;color:#fff;
+    background:linear-gradient(180deg,rgba(38,58,62,.52),rgba(38,58,62,.28) 55%,rgba(38,58,62,.62)),url('images/photo-12.jpg') center/cover no-repeat;
+    min-height:82vh;display:flex;align-items:center;overflow:hidden;
+  }
+  .hero-inner{position:relative;z-index:1;max-width:740px;padding:120px 22px 100px}
+  .hero-badge{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.4);
+    color:#fff;font-weight:400;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;
+    padding:8px 16px;border-radius:999px;margin-bottom:22px;
+  }
+  .hero h1{font-size:clamp(2.6rem,6.5vw,4.6rem);font-weight:600;line-height:1.05;margin-bottom:18px}
+  .hero h1 em{font-style:italic;color:rgba(255,255,255,.9)}
+  .hero-sub{font-size:1.15rem;opacity:.95;max-width:540px;margin-bottom:30px;font-weight:300}
+  .cta-row{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;font-family:'Inter',sans-serif;
+    font-weight:600;font-size:1rem;cursor:pointer;padding:14px 26px;border-radius:999px;
+    border:0;transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px)}
+  .btn-solid{background:var(--foam-deep);color:#fff;box-shadow:0 8px 22px rgba(45,85,95,.35)}
+  .btn-solid:hover{background:var(--foam-dark)}
+  .btn-ghost{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.6)}
+  .btn-ghost:hover{background:rgba(255,255,255,.22)}
+  .hero-caption{
+    position:absolute;left:0;right:0;bottom:0;z-index:1;
+    display:flex;align-items:center;justify-content:center;gap:12px;padding:16px 22px;
+    font-size:.92rem;font-weight:300;color:#fff;flex-wrap:wrap;
+    background:linear-gradient(0deg,rgba(24,36,39,.5),rgba(24,36,39,0));
+  }
+  .hero-caption strong{font-weight:600;color:#fff}
+  .hero-caption .sep{opacity:.6}
+  @media (max-width:760px){.hero{min-height:72vh}.hero-inner{padding:96px 22px 88px}}
+
+  /* ---------- Sections ---------- */
+  section{padding:84px 0}
+  .sec-head{margin-bottom:44px;max-width:720px}
+  .sec-head h2{font-size:clamp(2rem,4vw,3rem);font-weight:600;line-height:1.1;color:var(--foam-ink)}
+  .sec-head p{margin-top:14px;color:var(--muted);max-width:680px}
+  .kicker{
+    display:inline-block;font-family:'Inter',system-ui,sans-serif;font-weight:600;
+    letter-spacing:.18em;text-transform:uppercase;font-size:.82rem;color:var(--foam-deep);margin-bottom:12px;
+  }
+  .sec-white{background:#fff}
+  .sec-cream{background:var(--cream)}
+  .sec-sand{background:var(--sand-light)}
+  .sec-deep{background:linear-gradient(150deg,var(--foam-deep),var(--foam-dark));color:#fff}
+  .sec-deep .sec-head{max-width:none}
+  .sec-deep .sec-head h2{color:#fff}
+  .sec-deep .sec-head p{color:rgba(255,255,255,.85)}
+  .sec-deep .kicker{color:var(--sand)}
+
+  /* Apartment cards */
+  .apt-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+  .apt-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px}
+  .apt-card h3{display:flex;align-items:center;gap:10px;color:var(--foam-ink);font-weight:600;font-size:1.25rem;margin-bottom:16px}
+  .apt-card ul{list-style:none}
+  .apt-card li{
+    display:flex;align-items:center;gap:10px;padding:9px 0;
+    border-bottom:1px solid var(--line);font-weight:400;
+  }
+  .apt-card li:last-child{border-bottom:0}
+  .apt-card li svg{flex:none;color:var(--foam-deep)}
+  .apt-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:30px}
+  .stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;text-align:center}
+  .stat svg{color:var(--foam-deep);margin-bottom:6px}
+  .stat b{display:block;font-size:1.4rem;font-family:'Inter',system-ui,sans-serif;font-weight:600;color:var(--foam-ink)}
+  .stat span{font-size:.84rem;color:var(--muted);font-weight:400}
+  @media (max-width:760px){.apt-grid{grid-template-columns:1fr}.apt-stats{grid-template-columns:repeat(2,1fr)}}
+
+  /* Amenities */
+  .am-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .am-card{
+    display:flex;align-items:center;gap:14px;background:#fff;
+    border:1px solid var(--line);border-radius:12px;padding:16px 18px;font-weight:400;color:var(--foam-ink);
+  }
+  .am-card svg{flex:none;width:26px;height:26px;color:var(--foam-deep)}
+  @media (max-width:760px){.am-grid{grid-template-columns:1fr 1fr}}
+  @media (max-width:480px){.am-grid{grid-template-columns:1fr}}
+
+  /* Location */
+  .loc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .loc-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+  .loc-card svg{width:30px;height:30px;color:var(--foam);margin-bottom:12px}
+  .loc-card h4{font-family:'Inter',system-ui,sans-serif;font-weight:600;font-size:1.18rem;color:var(--foam-ink);margin-bottom:6px}
+  .loc-card p{font-size:.92rem;color:var(--muted)}
+  @media (max-width:760px){.loc-grid{grid-template-columns:1fr}}
+
+  .travel-strip{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+  .travel-chip{
+    display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);
+    color:var(--foam-ink);font-weight:400;font-size:.9rem;padding:12px 18px;border-radius:999px;
+  }
+  .travel-chip svg{color:var(--foam-deep)}
+
+  /* Gallery */
+  .gal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .gal-grid img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;cursor:zoom-in;transition:transform .15s ease}
+  .gal-grid img:hover{transform:scale(1.03)}
+  @media (max-width:760px){.gal-grid{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:480px){.gal-grid{grid-template-columns:1fr 1fr}}
+
+  /* Lightbox */
+  .lightbox{position:fixed;inset:0;background:rgba(20,28,30,.92);display:none;align-items:center;justify-content:center;z-index:100;cursor:zoom-out;padding:20px}
+  .lightbox.open{display:flex}
+  .lightbox img{max-width:94vw;max-height:90vh;border-radius:8px;box-shadow:0 10px 40px rgba(0,0,0,.5)}
+
+  /* Prices */
+  .price-note{
+    display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.25);color:#fff;font-weight:400;
+    padding:12px 18px;border-radius:999px;margin-bottom:30px;font-size:.96rem;
+  }
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .price-card{
+    background:#fff;border-radius:var(--radius);padding:30px 22px;text-align:center;
+    border-top:4px solid var(--foam);transition:transform .15s ease;
+  }
+  .price-card.featured{border-top-color:var(--sand);box-shadow:var(--shadow)}
+  .price-card h3{font-family:'Inter',system-ui,sans-serif;font-weight:600;font-size:1.35rem;color:var(--foam-ink);margin-bottom:6px}
+  .price-card .amount{font-size:2.5rem;font-weight:600;font-family:'Inter',system-ui,sans-serif;color:var(--foam-ink)}
+  .price-card .unit{font-weight:400;color:var(--muted);font-size:.95rem}
+  @media (max-width:760px){.price-grid{grid-template-columns:1fr}.price-card.featured{box-shadow:none}}
+
+  /* Contact */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:30px}
+  .contact-card{
+    display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.25);border-radius:var(--radius);padding:22px 24px;
+    transition:background .15s ease;
+  }
+  .contact-card:hover{background:rgba(255,255,255,.16)}
+  .contact-card .ico{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;flex:none}
+  .contact-card .ico.mail{background:var(--sand);color:var(--foam-ink)}
+  .contact-card .ico.wa{background:#25d366;color:#fff}
+  .contact-card b{display:block;font-size:1.2rem;font-family:'Inter',system-ui,sans-serif;font-weight:600}
+  .contact-card span{opacity:.9;font-size:.92rem;word-break:break-all}
+  @media (max-width:760px){.contact-grid{grid-template-columns:1fr}}
+  @media (max-width:380px){
+    .brand{font-size:.96rem}
+    .brand .dot{width:30px;height:30px}
+    .lang-switch button{padding:5px 8px}
+  }
+
+  /* Footer */
+  footer{background:var(--foam-dark);color:rgba(255,255,255,.8);padding:36px 0;font-size:.9rem}
+  footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  footer b{color:#fff;font-family:'Inter',system-ui,sans-serif;font-weight:600}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top">
+      <span class="dot">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 2c4 4 7 7.5 7 11a7 7 0 1 1-14 0c0-3.5 3-7 7-11z"/></svg>
+      </span>
+      Valdelagrana<span style="color:var(--foam)">·</span>Cádiz
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#apartamento" data-i18n="nav_apartment">El apartamento</a>
+      <a href="#servicios" data-i18n="nav_amenities">Servicios</a>
+      <a href="#ubicacion" data-i18n="nav_location">Ubicación</a>
+      <a href="#galeria" data-i18n="nav_gallery">Galería</a>
+      <a href="#precios" data-i18n="nav_prices">Precios</a>
+      <a href="#contacto" data-i18n="nav_contact">Contacto</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:10px">
+      <div class="lang-switch" role="group" aria-label="Idioma / Langue / Language">
+        <button data-lang="es" class="active">ES</button>
+        <button data-lang="fr">FR</button>
+        <button data-lang="en">EN</button>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--foam-ink)" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="wrap hero-inner">
+    <h1><span data-i18n="hero_t1">Vacaciones</span> <em data-i18n="hero_t2">junto al mar</em></h1>
+  </div>
+  <div class="hero-caption">
+    <span data-i18n="hero_card1">45 m² · 4 personas</span>
+    <span class="sep">·</span>
+    <strong data-i18n="hero_card2">150 m de la playa</strong>
+  </div>
+</section>
+
+<!-- ============ APARTMENT ============ -->
+<section class="sec-white" id="apartamento">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker" data-i18n="kicker_apt">La casa</span>
+      <h2 data-i18n="apt_title">El apartamento</h2>
+      <p data-i18n="apt_intro">Disfruta de unas vacaciones junto al mar en un acogedor apartamento de 45 m² con amplia terraza, situado en Valdelagrana (Puerto de Santa María), Cádiz, a solo 150 metros de la playa.</p>
+    </div>
+    <div class="apt-grid">
+      <div class="apt-card">
+        <h3>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20M4 20V9l8-5 8 5v11M9 20v-5h6v5"/></svg>
+          <span data-i18n="apt_capacity_title">Capacidad para 4 personas</span>
+        </h3>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 8v8M3 12h8l3-4h7v8h-7l-3-4H3"/></svg><span data-i18n="apt_c1">1 dormitorio con dos camas individuales</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 18v-6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v6M4 18h16M6 18v2M18 18v2"/></svg><span data-i18n="apt_c2">Salón con sofá cama (140 × 200 cm)</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c4 4 7 7.5 7 11a7 7 0 1 1-14 0c0-3.5 3-7 7-11z"/></svg><span data-i18n="apt_c3">Terraza</span></li>
+        </ul>
+      </div>
+      <div class="apt-card">
+        <h3>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 19V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14M2 19h20M8 11h8M8 7h4"/></svg>
+          <span data-i18n="apt_rooms_title">Distribución</span>
+        </h3>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 12h18M5 12V8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v4M5 12v5M19 12v5M8 17h8"/></svg><span data-i18n="apt_d1">Cocina equipada</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 20v-8M8 20v-8M12 20V4l8 4v12M16 20v-6"/></svg><span data-i18n="apt_d2">Baño completo</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l9-18 9 18M6 16h12"/></svg><span data-i18n="apt_d3">Terraza con zona de comedor</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="apt-stats">
+      <div class="stat">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 9l9-6 9 6v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/></svg>
+        <b data-i18n="stat_surface">45 m²</b>
+        <span data-i18n="stat_surface_l">superficie</span>
+      </div>
+      <div class="stat">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M2 20h20M4 20V9l8-5 8 5v11M9 20v-5h6v5"/></svg>
+        <b data-i18n="stat_sleeps">4</b>
+        <span data-i18n="stat_sleeps_l">personas</span>
+      </div>
+      <div class="stat">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l9-18 9 18M6 16h12"/></svg>
+        <b data-i18n="stat_terrace">1</b>
+        <span data-i18n="stat_terrace_l">terraza</span>
+      </div>
+      <div class="stat">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c4 4 7 7.5 7 11a7 7 0 1 1-14 0c0-3.5 3-7 7-11z"/><path d="M9 13h6M10.5 10.5l1.5-1.5 1.5 1.5"/></svg>
+        <b data-i18n="stat_beach">150 m</b>
+        <span data-i18n="stat_beach_l">a la playa</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AMENITIES ============ -->
+<section class="sec-sand" id="servicios">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker" data-i18n="kicker_am">Todo incluido</span>
+      <h2 data-i18n="am_title">Equipamiento</h2>
+    </div>
+    <div class="am-grid">
+      <div class="am-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 3v18"/></svg><span data-i18n="am_parking">Plaza de aparcamiento</span></div>
+      <div class="am-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 12c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2M2 18c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2"/></svg><span data-i18n="am_pool">Piscina comunitaria</span></div>
+      <div class="am-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 14L12 3l6 11M8 14l4-8 4 8M5 18h14M9 18v3M15 18v3"/></svg><span data-i18n="am_ac">Aire acondicionado</span></div>
+      <div class="am-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13a10 10 0 0 1 14 0M8.5 16.5a5 5 0 0 1 7 0M12 20h.01"/></svg><span>WiFi</span></div>
+      <div class="am-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="5" width="16" height="16" rx="3"/><circle cx="12" cy="13" r="3"/><path d="M7 9h.01"/></svg><span data-i18n="am_washer">Lavadora</span></div>
+      <div class="am-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 8h12M6 8v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V8M9 8V6a3 3 0 0 1 6 0v2"/></svg><span data-i18n="am_dish">Lavavajillas</span></div>
+      <div class="am-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M8 6v12M16 6v12M3 10h5M3 14h5M16 10h5M16 14h5"/></svg><span data-i18n="am_micro">Microondas</span></div>
+      <div class="am-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8h16l-1.5 11a2 2 0 0 1-2 1.8H7.5a2 2 0 0 1-2-1.8L4 8zM8 8V5a4 4 0 0 1 8 0v3"/><path d="M9 13v3M12 12v4M15 13v3"/></svg><span data-i18n="am_coffee">Cafetera</span></div>
+      <div class="am-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9M12 3v9l6 6"/></svg><span data-i18n="am_fryer">Freidora de aire</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOCATION ============ -->
+<section class="sec-white" id="ubicacion">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker" data-i18n="kicker_loc">Dónde estamos</span>
+      <h2 data-i18n="loc_title">Ubicación</h2>
+      <p data-i18n="loc_intro">Excelente ubicación: a pocos minutos andando de la playa, el paseo marítimo, supermercados, farmacia, restaurantes, cafeterías y todo tipo de servicios.</p>
+    </div>
+    <div class="loc-grid">
+      <div class="loc-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16M6 20V9l6-4 6 4v11M9 20v-5h6v5"/><path d="M9 9h.01M15 9h.01"/></svg>
+        <h4 data-i18n="loc_b1">Playa de Valdelagrana</h4>
+        <p data-i18n="loc_b1d">2 km de arena fina y aguas tranquilas, una de las playas más familiares de la bahía de Cádiz. A solo 150 m del apartamento.</p>
+      </div>
+      <div class="loc-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 17c3 0 3-2 6-2s3 2 6 2 3-2 6-2M3 21c3 0 3-2 6-2s3 2 6 2 3-2 6-2M3 13c3 0 3-2 6-2s3 2 6 2 3-2 6-2M3 9c3 0 3-2 6-2s3 2 6 2 3-2 6-2"/></svg>
+        <h4 data-i18n="loc_b2">Paseo marítimo</h4>
+        <p data-i18n="loc_b2d">Más de 1.400 m de paseo junto al mar: perfecto para pasear, correr o cenar al aire libre.</p>
+      </div>
+      <div class="loc-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15l4 2 4-6 4 4 4-2M3 19h18M5 15V9a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6"/></svg>
+        <h4 data-i18n="loc_b3">Cádiz en ferry</h4>
+        <p data-i18n="loc_b3d">Catamarán a Cádiz en ~25 min desde el centro de El Puerto, a pocos minutos en coche o autobús.</p>
+      </div>
+      <div class="loc-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/><circle cx="12" cy="11" r="1.4"/></svg>
+        <h4 data-i18n="loc_b4">Puerto Sherry y Costa Oeste</h4>
+        <p data-i18n="loc_b4d">Marina deportiva con restaurantes y ocio; playas de La Muralla, Fuentebravía y Vistahermosa a pocos minutos.</p>
+      </div>
+      <div class="loc-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V8l8-5 8 5v13M2 21h20M9 21v-8h6v8"/><path d="M8 5h8M9 9h6"/></svg>
+        <h4 data-i18n="loc_b5">Bodegas y castillo</h4>
+        <p data-i18n="loc_b5d">El Puerto, capital del vino fino: bodegas Osborne y Terry, y el Castillo de San Marcos (s. XIII).</p>
+      </div>
+      <div class="loc-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20c3 0 3-2 6-2s3 2 6 2 3-2 6-2M3 16c3 0 3-2 6-2s3 2 6 2 3-2 6-2M4 12V5h16v7"/><circle cx="12" cy="5" r="2"/></svg>
+        <h4 data-i18n="loc_b6">Parque Natural Los Toruños</h4>
+        <p data-i18n="loc_b6d">Salinas y marismas junto a Valdelagrana, con rutas a pie o en bicicleta.</p>
+      </div>
+    </div>
+    <div class="travel-strip">
+      <span class="travel-chip">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 16l20-7-9 3-3 8-8-4zM2 16l5 3M17 9l-2-6-3 2"/></svg>
+        <span data-i18n="travel_airport">Aeropuerto de Jerez (XRY): ~25–30 min</span>
+      </span>
+      <span class="travel-chip">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 3v18M9 9h6M9 14h6"/></svg>
+        <span data-i18n="travel_train">Parada de Cercanías Valdelagrana (línea C-1)</span>
+      </span>
+      <span class="travel-chip">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 5l9 3 9-3v14l-9 3-9-3zM12 8v14"/></svg>
+        <span data-i18n="travel_car">Cádiz 25 min · Jerez 15 min · Sevilla ~1 h 15</span>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="sec-sand" id="galeria">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker" data-i18n="kicker_gal">Imágenes</span>
+      <h2 data-i18n="gal_title">Galería</h2>
+    </div>
+    <div class="gal-grid">
+      <img src="images/photo-01.jpg" alt="Foto 1" loading="lazy">
+      <img src="images/photo-02.jpg" alt="Foto 2" loading="lazy">
+      <img src="images/photo-03.jpg" alt="Foto 3" loading="lazy">
+      <img src="images/photo-04.jpg" alt="Foto 4" loading="lazy">
+      <img src="images/photo-05.jpg" alt="Foto 5" loading="lazy">
+      <img src="images/photo-06.jpg" alt="Foto 6" loading="lazy">
+      <img src="images/photo-07.jpg" alt="Foto 7" loading="lazy">
+      <img src="images/photo-08.jpg" alt="Foto 8" loading="lazy">
+      <img src="images/photo-09.jpg" alt="Foto 9" loading="lazy">
+      <img src="images/photo-10.jpg" alt="Foto 10" loading="lazy">
+      <img src="images/photo-11.jpg" alt="Foto 11" loading="lazy">
+      <img src="images/photo-12.jpg" alt="Foto 12" loading="lazy">
+      <img src="images/photo-13.jpg" alt="Foto 13" loading="lazy">
+      <img src="images/photo-14.jpg" alt="Foto 14" loading="lazy">
+      <img src="images/photo-15.jpg" alt="Foto 15" loading="lazy">
+      <img src="images/photo-16.jpg" alt="Foto 16" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICES ============ -->
+<section class="sec-deep" id="precios">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker" data-i18n="kicker_price">Temporada</span>
+      <h2 data-i18n="price_title">Precios</h2>
+      <p><span class="price-note">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+        <span data-i18n="price_note">Se priorizan alquileres por quincenas.</span>
+      </span></p>
+    </div>
+    <div class="price-grid">
+      <div class="price-card featured">
+        <h3 data-i18n="month_jul">Julio</h3>
+        <div class="amount">1.200 €</div>
+        <div class="unit" data-i18n="price_unit">/ quincena</div>
+      </div>
+      <div class="price-card">
+        <h3 data-i18n="month_aug">Agosto</h3>
+        <div class="amount">1.200 €</div>
+        <div class="unit" data-i18n="price_unit">/ quincena</div>
+      </div>
+      <div class="price-card">
+        <h3 data-i18n="month_sep">Septiembre</h3>
+        <div class="amount">1.000 €</div>
+        <div class="unit" data-i18n="price_unit">/ quincena</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="sec-deep" id="contacto" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker" data-i18n="kicker_contact">Reserva</span>
+      <h2 data-i18n="contact_title">Contacto</h2>
+      <p data-i18n="contact_intro">¿Preguntas o quieres reservar fechas? Escríbenos por email o WhatsApp.</p>
+    </div>
+    <div class="contact-grid">
+      <!-- Replace placeholders with your real contact details -->
+      <a class="contact-card" href="mailto:tu@email.com">
+        <span class="ico mail">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        </span>
+        <span><b data-i18n="contact_email">Email</b><span>tu@email.com</span></span>
+      </a>
+      <a class="contact-card" href="https://wa.me/34600000000" target="_blank" rel="noopener">
+        <span class="ico wa">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.5L3 21l2-5.5A8.5 8.5 0 1 1 21 11.5z"/><path d="M9 9.5c.5 3 3 5.5 6 6l1.5-2-2-1-1.5.5c-1-.5-2-1.5-2.5-2.5l.5-1.5-1-2z"/></svg>
+        </span>
+        <span><b data-i18n="contact_wa">WhatsApp</b><span>+34 600 000 000</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span><b>Apartamento Valdelagrana</b> · El Puerto de Santa María, Cádiz</span>
+    <span data-i18n="footer_note">Alquiler vacacional · ES / FR / EN</span>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox"><img id="lbImg" src="" alt=""></div>
+
+<script>
+(function(){
+  var I18N = {
+    es: {
+      nav_apartment:"El apartamento", nav_amenities:"Servicios", nav_location:"Ubicación",
+      nav_gallery:"Galería", nav_prices:"Precios", nav_contact:"Contacto",
+      hero_t1:"Vacaciones", hero_t2:"junto al mar",
+
+
+      hero_card1:"45 m² · 4 personas", hero_card2:"150 m de la playa",
+      kicker_apt:"La casa", apt_title:"El apartamento",
+      apt_intro:"Disfruta de unas vacaciones junto al mar en un acogedor apartamento de 45 m² con amplia terraza, situado en Valdelagrana (Puerto de Santa María), Cádiz, a solo 150 metros de la playa.",
+      apt_capacity_title:"Capacidad para 4 personas",
+      apt_c1:"1 dormitorio con dos camas individuales",
+      apt_c2:"Salón con sofá cama (140 × 200 cm)",
+      apt_c3:"Terraza",
+      apt_rooms_title:"Distribución",
+      apt_d1:"Cocina equipada", apt_d2:"Baño completo", apt_d3:"Terraza con zona de comedor",
+      stat_surface:"45 m²", stat_surface_l:"superficie",
+      stat_sleeps:"4", stat_sleeps_l:"personas",
+      stat_terrace:"1", stat_terrace_l:"terraza",
+      stat_beach:"150 m", stat_beach_l:"a la playa",
+      kicker_am:"Todo incluido", am_title:"Equipamiento",
+      am_parking:"Plaza de aparcamiento", am_pool:"Piscina comunitaria", am_ac:"Aire acondicionado",
+      am_washer:"Lavadora", am_dish:"Lavavajillas", am_micro:"Microondas",
+      am_coffee:"Cafetera", am_fryer:"Freidora de aire",
+      kicker_loc:"Dónde estamos", loc_title:"Ubicación",
+      loc_intro:"Excelente ubicación: a pocos minutos andando de la playa, el paseo marítimo, supermercados, farmacia, restaurantes, cafeterías y todo tipo de servicios.",
+      loc_b1:"Playa de Valdelagrana",
+      loc_b1d:"2 km de arena fina y aguas tranquilas, una de las playas más familiares de la bahía de Cádiz. A solo 150 m del apartamento.",
+      loc_b2:"Paseo marítimo",
+      loc_b2d:"Más de 1.400 m de paseo junto al mar: perfecto para pasear, correr o cenar al aire libre.",
+      loc_b3:"Cádiz en ferry",
+      loc_b3d:"Catamarán a Cádiz en ~25 min desde el centro de El Puerto, a pocos minutos en coche o autobús.",
+      loc_b4:"Puerto Sherry y Costa Oeste",
+      loc_b4d:"Marina deportiva con restaurantes y ocio; playas de La Muralla, Fuentebravía y Vistahermosa a pocos minutos.",
+      loc_b5:"Bodegas y castillo",
+      loc_b5d:"El Puerto, capital del vino fino: bodegas Osborne y Terry, y el Castillo de San Marcos (s. XIII).",
+      loc_b6:"Parque Natural Los Toruños",
+      loc_b6d:"Salinas y marismas junto a Valdelagrana, con rutas a pie o en bicicleta.",
+      travel_airport:"Aeropuerto de Jerez (XRY): ~25–30 min",
+      travel_train:"Parada de Cercanías Valdelagrana (línea C-1)",
+      travel_car:"Cádiz 25 min · Jerez 15 min · Sevilla ~1 h 15",
+      kicker_gal:"Imágenes", gal_title:"Galería",
+      kicker_price:"Temporada", price_title:"Precios",
+      price_note:"Se priorizan alquileres por quincenas.",
+      month_jul:"Julio", month_aug:"Agosto", month_sep:"Septiembre",
+      price_unit:"/ quincena",
+      kicker_contact:"Reserva", contact_title:"Contacto",
+      contact_intro:"¿Preguntas o quieres reservar fechas? Escríbenos por email o WhatsApp.",
+      contact_email:"Email", contact_wa:"WhatsApp",
+      footer_note:"Alquiler vacacional · ES / FR / EN"
+    },
+    fr: {
+      nav_apartment:"L'appartement", nav_amenities:"Équipements", nav_location:"Localisation",
+      nav_gallery:"Galerie", nav_prices:"Tarifs", nav_contact:"Contact",
+      hero_t1:"Des vacances", hero_t2:"en bord de mer",
+
+
+      hero_card1:"45 m² · 4 personnes", hero_card2:"150 m de la plage",
+      kicker_apt:"La maison", apt_title:"L'appartement",
+      apt_intro:"Profitez de vacances en bord de mer dans un appartement cosy de 45 m² avec grande terrasse, situé à Valdelagrana (Puerto de Santa María), Cádiz, à seulement 150 mètres de la plage.",
+      apt_capacity_title:"Capacité : 4 personnes",
+      apt_c1:"1 chambre avec deux lits simples",
+      apt_c2:"Salon avec canapé-lit (140 × 200 cm)",
+      apt_c3:"Terrasse",
+      apt_rooms_title:"Distribution",
+      apt_d1:"Cuisine équipée", apt_d2:"Salle de bain complète", apt_d3:"Terrasse avec coin repas",
+      stat_surface:"45 m²", stat_surface_l:"de surface",
+      stat_sleeps:"4", stat_sleeps_l:"personnes",
+      stat_terrace:"1", stat_terrace_l:"terrasse",
+      stat_beach:"150 m", stat_beach_l:"de la plage",
+      kicker_am:"Tout inclus", am_title:"Équipement",
+      am_parking:"Place de parking", am_pool:"Piscine commune", am_ac:"Climatisation",
+      am_washer:"Lave-linge", am_dish:"Lave-vaisselle", am_micro:"Micro-ondes",
+      am_coffee:"Cafetière", am_fryer:"Friteuse à air",
+      kicker_loc:"Où nous sommes", loc_title:"Localisation",
+      loc_intro:"Emplacement idéal : à quelques minutes à pied de la plage, de la promenade maritime, des supermarchés, de la pharmacie, des restaurants, des cafés et de tous les services.",
+      loc_b1:"Plage de Valdelagrana",
+      loc_b1d:"2 km de sable fin et d'eaux calmes, l'une des plages les plus familiales de la baie de Cádiz. À seulement 150 m de l'appartement.",
+      loc_b2:"Promenade maritime",
+      loc_b2d:"Plus de 1 400 m de promenade en bord de mer : idéal pour se balader, courir ou dîner en plein air.",
+      loc_b3:"Cádiz en ferry",
+      loc_b3d:"Catamaran vers Cádiz en ~25 min depuis le centre d'El Puerto, à quelques minutes en voiture ou en bus.",
+      loc_b4:"Puerto Sherry et Costa Oeste",
+      loc_b4d:"Marina de plaisance avec restaurants et loisirs ; plages de La Muralla, Fuentebravía et Vistahermosa à quelques minutes.",
+      loc_b5:"Bodegas et château",
+      loc_b5d:"El Puerto, capitale du fino : bodegas Osborne et Terry, et le château de San Marcos (XIIIe s.).",
+      loc_b6:"Parc naturel Los Toruños",
+      loc_b6d:"Salines et marais à côté de Valdelagrana, avec des itinéraires à pied ou à vélo.",
+      travel_airport:"Aéroport de Jerez (XRY) : ~25–30 min",
+      travel_train:"Arrêt Cercanías Valdelagrana (ligne C-1)",
+      travel_car:"Cádiz 25 min · Jerez 15 min · Séville ~1 h 15",
+      kicker_gal:"Images", gal_title:"Galerie",
+      kicker_price:"Saison", price_title:"Tarifs",
+      price_note:"Les locations à la quinzaine sont privilégiées.",
+      month_jul:"Juillet", month_aug:"Août", month_sep:"Septembre",
+      price_unit:"/ quinzaine",
+      kicker_contact:"Réservation", contact_title:"Contact",
+      contact_intro:"Des questions ou envie de réserver des dates ? Écrivez-nous par email ou WhatsApp.",
+      contact_email:"Email", contact_wa:"WhatsApp",
+      footer_note:"Location de vacances · ES / FR / EN"
+    },
+    en: {
+      nav_apartment:"The apartment", nav_amenities:"Amenities", nav_location:"Location",
+      nav_gallery:"Gallery", nav_prices:"Prices", nav_contact:"Contact",
+      hero_t1:"Holidays", hero_t2:"by the sea",
+
+
+      hero_card1:"45 m² · sleeps 4", hero_card2:"150 m from the beach",
+      kicker_apt:"The home", apt_title:"The apartment",
+      apt_intro:"Enjoy seaside holidays in a cosy 45 m² apartment with a spacious terrace, in Valdelagrana (Puerto de Santa María), Cádiz, just 150 metres from the beach.",
+      apt_capacity_title:"Sleeps 4",
+      apt_c1:"1 bedroom with two single beds",
+      apt_c2:"Living room with sofa bed (140 × 200 cm)",
+      apt_c3:"Terrace",
+      apt_rooms_title:"Layout",
+      apt_d1:"Fitted kitchen", apt_d2:"Full bathroom", apt_d3:"Terrace with dining area",
+      stat_surface:"45 m²", stat_surface_l:"floor area",
+      stat_sleeps:"4", stat_sleeps_l:"guests",
+      stat_terrace:"1", stat_terrace_l:"terrace",
+      stat_beach:"150 m", stat_beach_l:"to the beach",
+      kicker_am:"All included", am_title:"Equipment",
+      am_parking:"Parking space", am_pool:"Shared swimming pool", am_ac:"Air conditioning",
+      am_washer:"Washing machine", am_dish:"Dishwasher", am_micro:"Microwave",
+      am_coffee:"Coffee machine", am_fryer:"Air fryer",
+      kicker_loc:"Where we are", loc_title:"Location",
+      loc_intro:"Excellent location: just a few minutes' walk from the beach, the promenade, supermarkets, pharmacy, restaurants, cafés and all kinds of services.",
+      loc_b1:"Valdelagrana beach",
+      loc_b1d:"2 km of fine sand and calm waters, one of the most family-friendly beaches in the Bay of Cádiz. Only 150 m from the apartment.",
+      loc_b2:"Seafront promenade",
+      loc_b2d:"Over 1,400 m of seafront promenade: perfect for walks, jogging or al fresco dining.",
+      loc_b3:"Ferry to Cádiz",
+      loc_b3d:"Catamaran to Cádiz in ~25 min from El Puerto town centre, a few minutes away by car or bus.",
+      loc_b4:"Puerto Sherry & Costa Oeste",
+      loc_b4d:"Marina with restaurants and leisure; La Muralla, Fuentebravía and Vistahermosa beaches a few minutes away.",
+      loc_b5:"Sherry bodegas & castle",
+      loc_b5d:"El Puerto, the capital of fino sherry: Osborne and Terry bodegas, and the 13th-century Castle of San Marcos.",
+      loc_b6:"Los Toruños Natural Park",
+      loc_b6d:"Salt marshes and wetlands right by Valdelagrana, with walking and cycling trails.",
+      travel_airport:"Jerez airport (XRY): ~25–30 min",
+      travel_train:"Valdelagrana Cercanías stop (line C-1)",
+      travel_car:"Cádiz 25 min · Jerez 15 min · Seville ~1 h 15",
+      kicker_gal:"Images", gal_title:"Gallery",
+      kicker_price:"Season", price_title:"Prices",
+      price_note:"Fortnight rentals are preferred.",
+      month_jul:"July", month_aug:"August", month_sep:"September",
+      price_unit:"/ fortnight",
+      kicker_contact:"Booking", contact_title:"Contact",
+      contact_intro:"Questions or want to book dates? Email or WhatsApp us.",
+      contact_email:"Email", contact_wa:"WhatsApp",
+      footer_note:"Holiday rental · ES / FR / EN"
+    }
+  };
+
+  var lang = localStorage.getItem('vdg-lang') || 'es';
+  if (['es','fr','en'].indexOf(lang) === -1) lang = 'es';
+
+  function apply(l){
+    document.documentElement.lang = l;
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var k = el.getAttribute('data-i18n');
+      if (I18N[l][k] !== undefined) el.textContent = I18N[l][k];
+    });
+    document.querySelectorAll('.lang-switch button').forEach(function(b){
+      b.classList.toggle('active', b.getAttribute('data-lang') === l);
+    });
+    localStorage.setItem('vdg-lang', l);
+  }
+
+  document.querySelectorAll('.lang-switch button').forEach(function(b){
+    b.addEventListener('click', function(){ apply(b.getAttribute('data-lang')); });
+  });
+
+  document.getElementById('hamburger').addEventListener('click', function(){
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+  document.querySelectorAll('#navLinks a').forEach(function(a){
+    a.addEventListener('click', function(){ document.getElementById('navLinks').classList.remove('open'); });
+  });
+
+  // Lightbox
+  var lb = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lbImg');
+  document.querySelectorAll('.gal-grid img').forEach(function(img){
+    img.addEventListener('click', function(){ lbImg.src = img.src; lb.classList.add('open'); });
+  });
+  lb.addEventListener('click', function(){ lb.classList.remove('open'); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') lb.classList.remove('open'); });
+
+  apply(lang);
+})();
+</script>
+</body>
+</html>
