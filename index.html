@@ -192,19 +192,24 @@
   @media (max-width:760px){.price-grid{grid-template-columns:1fr}.price-card.featured{box-shadow:none}}
 
   /* Contact */
-  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:30px}
-  .contact-card{
-    display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.1);
-    border:1px solid rgba(255,255,255,.25);border-radius:var(--radius);padding:22px 24px;
-    transition:background .15s ease;
+  .contact-form{max-width:560px;margin:28px auto 0}
+  .contact-form form{display:flex;flex-direction:column;gap:16px}
+  .cf-field{display:flex;flex-direction:column;gap:7px;text-align:left}
+  .cf-field span{font-weight:600;font-size:.9rem;color:rgba(255,255,255,.85);letter-spacing:.02em}
+  .cf-field input,.cf-field textarea{
+    padding:13px 16px;border:1px solid rgba(255,255,255,.25);border-radius:14px;
+    font-family:'Inter',system-ui,sans-serif;font-size:1rem;background:rgba(255,255,255,.08);
+    color:#fff;outline:none;width:100%;box-sizing:border-box;transition:border-color .15s ease,background .15s ease;
   }
-  .contact-card:hover{background:rgba(255,255,255,.16)}
-  .contact-card .ico{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;flex:none}
-  .contact-card .ico.mail{background:var(--sand);color:var(--foam-ink)}
-  .contact-card .ico.wa{background:#25d366;color:#fff}
-  .contact-card b{display:block;font-size:1.2rem;font-family:'Inter',system-ui,sans-serif;font-weight:600}
-  .contact-card span{opacity:.9;font-size:.92rem;word-break:break-all}
-  @media (max-width:760px){.contact-grid{grid-template-columns:1fr}}
+  .cf-field input::placeholder,.cf-field textarea::placeholder{color:rgba(255,255,255,.5)}
+  .cf-field input:focus,.cf-field textarea:focus{border-color:var(--foam);background:rgba(255,255,255,.12)}
+  .cf-field textarea{resize:vertical;min-height:130px}
+  .contact-form .btn{justify-content:center;width:100%}
+  .contact-form .btn:disabled{opacity:.6;cursor:not-allowed}
+  .cf-botcheck{position:absolute;left:-9999px;opacity:0}
+  .cf-status{min-height:1.2em;font-size:.92rem;margin:2px 0 0}
+  .cf-status.ok{color:#6fe3a5}
+  .cf-status.err{color:#ff9d94}
   @media (max-width:380px){
     .brand{font-size:.96rem}
     .brand .dot{width:30px;height:30px}
@@ -463,19 +468,26 @@
       <h2 data-i18n="contact_title">Contacto</h2>
       <p data-i18n="contact_intro">¿Preguntas o quieres reservar fechas? Escríbenos por email o WhatsApp.</p>
     </div>
-    <div class="contact-grid">
-      <a class="contact-card" href="#" data-ctlink="email">
-        <span class="ico mail">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
-        </span>
-        <span><b data-i18n="contact_email">Email</b><span id="ct-email">…</span></span>
-      </a>
-      <a class="contact-card" href="#" data-ctlink="wa" target="_blank" rel="noopener">
-        <span class="ico wa">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.5L3 21l2-5.5A8.5 8.5 0 1 1 21 11.5z"/><path d="M9 9.5c.5 3 3 5.5 6 6l1.5-2-2-1-1.5.5c-1-.5-2-1.5-2.5-2.5l.5-1.5-1-2z"/></svg>
-        </span>
-        <span><b data-i18n="contact_wa">WhatsApp</b><span id="ct-wa">…</span></span>
-      </a>
+    <div class="contact-form">
+      <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" autocomplete="off">
+        <input type="hidden" name="access_key" value="9547061e-6dd5-4bf8-85b9-def69d7c7524">
+        <input type="hidden" name="subject" value="Alquiler apartamento Valdelagrana">
+        <input type="checkbox" name="botcheck" class="cf-botcheck" tabindex="-1" autocomplete="off">
+        <label class="cf-field">
+          <span data-i18n="cf_name">Nombre</span>
+          <input type="text" name="name" required>
+        </label>
+        <label class="cf-field">
+          <span data-i18n="cf_email">Email</span>
+          <input type="email" name="email" required>
+        </label>
+        <label class="cf-field">
+          <span data-i18n="cf_message">Mensaje</span>
+          <textarea name="message" rows="5" required></textarea>
+        </label>
+        <button class="btn btn-solid" type="submit" data-i18n="cf_send">Enviar</button>
+        <p class="cf-status" id="cfStatus" role="status"></p>
+      </form>
     </div>
   </div>
 </section>
@@ -538,8 +550,11 @@
       month_jul:"Julio", month_aug:"Agosto", month_sep:"Septiembre",
       price_unit:"/ quincena",
       kicker_contact:"Reserva", contact_title:"Contacto",
-      contact_intro:"¿Preguntas o quieres reservar fechas? Escríbenos por email o WhatsApp.",
-      contact_email:"Email", contact_wa:"WhatsApp",
+      contact_intro:"¿Preguntas o quieres reservar fechas? Escríbenos y te responderemos lo antes posible.",
+      cf_name:"Nombre", cf_email:"Email", cf_message:"Mensaje",
+      cf_send:"Enviar", cf_sending:"Enviando…",
+      cf_ok:"Gracias. Tu mensaje se ha enviado correctamente.",
+      cf_err:"No se pudo enviar el mensaje. Inténtalo de nuevo.",
       footer_note:"Alquiler vacacional · ES / FR / EN"
     },
     fr: {
@@ -588,8 +603,11 @@
       month_jul:"Juillet", month_aug:"Août", month_sep:"Septembre",
       price_unit:"/ quinzaine",
       kicker_contact:"Réservation", contact_title:"Contact",
-      contact_intro:"Des questions ou envie de réserver des dates ? Écrivez-nous par email ou WhatsApp.",
-      contact_email:"Email", contact_wa:"WhatsApp",
+      contact_intro:"Des questions ou envie de réserver des dates ? Écrivez-nous et nous vous répondrons dès que possible.",
+      cf_name:"Nom", cf_email:"Email", cf_message:"Message",
+      cf_send:"Envoyer", cf_sending:"Envoi en cours…",
+      cf_ok:"Merci. Votre message a bien été envoyé.",
+      cf_err:"Le message n'a pas pu être envoyé. Veuillez réessayer.",
       footer_note:"Location de vacances · ES / FR / EN"
     },
     en: {
@@ -638,8 +656,11 @@
       month_jul:"July", month_aug:"August", month_sep:"September",
       price_unit:"/ fortnight",
       kicker_contact:"Booking", contact_title:"Contact",
-      contact_intro:"Questions or want to book dates? Email or WhatsApp us.",
-      contact_email:"Email", contact_wa:"WhatsApp",
+      contact_intro:"Questions or want to book dates? Write to us and we'll get back to you soon.",
+      cf_name:"Name", cf_email:"Email", cf_message:"Message",
+      cf_send:"Send", cf_sending:"Sending…",
+      cf_ok:"Thanks. Your message has been sent successfully.",
+      cf_err:"Your message could not be sent. Please try again.",
       footer_note:"Holiday rental · ES / FR / EN"
     }
   };
@@ -679,17 +700,35 @@
   lb.addEventListener('click', function(){ lb.classList.remove('open'); });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') lb.classList.remove('open'); });
 
-  // Contact details are reassembled at runtime so the raw HTML source holds no
-  // plaintext email/phone or mailto:/wa.me links, keeping naive scrapers out.
-  // The strings below are the values reversed; rev() restores them.
-  function rev(s){ return s.split('').reverse().join(''); }
-  var ctEmail = rev('ten.rlhd@anargaledlav');
-  var ctWaRaw = rev('67124042643+');
-  var ctWaText = ctWaRaw.replace(/^(\+\d{2})(\d{3})(\d{2})(\d{2})(\d{2})$/, '$1 $2 $3 $4 $5');
-  document.getElementById('ct-email').textContent = ctEmail;
-  document.getElementById('ct-wa').textContent = ctWaText;
-  document.querySelector('[data-ctlink="email"]').href = 'mailto:' + ctEmail;
-  document.querySelector('[data-ctlink="wa"]').href = 'https://wa.me/' + ctWaRaw.slice(1);
+  // Contact form (Web3Forms) - submit in the background, no page reload
+  var cf = document.getElementById('contactForm');
+  var cfStatus = document.getElementById('cfStatus');
+  cf.addEventListener('submit', function(e){
+    e.preventDefault();
+    var bot = cf.querySelector('[name="botcheck"]');
+    if (bot && bot.checked) return; // honeypot: silently drop bots
+    var btn = cf.querySelector('button[type="submit"]');
+    cfStatus.textContent = I18N[lang].cf_sending;
+    cfStatus.className = 'cf-status';
+    btn.disabled = true;
+    fetch('https://api.web3forms.com/submit', { method:'POST', body: new FormData(cf), headers:{'Accept':'application/json'} })
+      .then(function(r){ return r.json(); })
+      .then(function(res){
+        if (res && res.success) {
+          cfStatus.textContent = I18N[lang].cf_ok;
+          cfStatus.className = 'cf-status ok';
+          cf.reset();
+        } else {
+          cfStatus.textContent = I18N[lang].cf_err;
+          cfStatus.className = 'cf-status err';
+        }
+      })
+      .catch(function(){
+        cfStatus.textContent = I18N[lang].cf_err;
+        cfStatus.className = 'cf-status err';
+      })
+      .then(function(){ btn.disabled = false; });
+  });
 
   apply(lang);
 })();
