@@ -1,0 +1,9 @@
+name = "vdl-api"
+main = "worker.js"
+account_id = "a3969d2acc1705ead369216726933098"
+compatibility_date = "2024-01-01"
+
+# Se requiere Workers Routes (zona) para enrutar valdelagrana.dhlr.net/api/*
+[[kv_namespaces]]
+binding = "VDL_STATE"
+id = "a617b3fbd90b4761afcb9f1025a68c30"

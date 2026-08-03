@@ -191,6 +191,15 @@
   .price-card .unit{font-weight:400;color:var(--muted);font-size:.95rem}
   @media (max-width:760px){.price-grid{grid-template-columns:1fr}.price-card.featured{box-shadow:none}}
 
+  /* Fechas disponibles */
+  .dates-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+  .date-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .date-card .range{font-family:'Inter',system-ui,sans-serif;font-weight:600;color:var(--foam-ink)}
+  .date-card .pill{padding:4px 12px;border-radius:999px;font-size:.8rem;font-weight:600}
+  .date-card .pill.libre{background:#e2f3e6;color:#1e7e44}
+  .date-card .pill.res{background:#fde3df;color:#b23a2e}
+  @media (max-width:760px){.dates-grid{grid-template-columns:1fr}}
+
   /* Contact */
   .contact-form{max-width:560px;margin:28px auto 0}
   .contact-form form{display:flex;flex-direction:column;gap:16px}
@@ -459,6 +468,18 @@
   </div>
 </section>
 
+<!-- ============ FECHAS DISPONIBLES (oculta; activar desde el JS) ============ -->
+<section class="sec-white" id="disponibilidad" hidden>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker" data-i18n="kicker_dates">Disponibilidad</span>
+      <h2 data-i18n="dates_title">Fechas disponibles</h2>
+      <p data-i18n="dates_intro">Estos son los periodos reservados o disponibles.</p>
+    </div>
+    <div id="dates-list" class="dates-grid"><p data-i18n="dates_empty">Próximamente.</p></div>
+  </div>
+</section>
+
 <!-- ============ CONTACT ============ -->
 <section class="sec-deep" id="contacto" style="padding-top:0">
   <div class="wrap">
@@ -549,6 +570,9 @@
       price_note:"Se priorizan alquileres por quincenas.",
       month_jul:"Julio", month_aug:"Agosto", month_sep:"Septiembre",
       price_unit:"/ quincena",
+      kicker_dates:"Disponibilidad", dates_title:"Fechas disponibles",
+      dates_intro:"Estos son los periodos reservados o disponibles.",
+      dates_empty:"Próximamente.", dates_libre:"Libre", dates_res:"Reservada",
       kicker_contact:"Reserva", contact_title:"Contacto",
       contact_intro:"¿Preguntas o quieres reservar fechas? Escríbenos y te responderemos lo antes posible.",
       cf_name:"Nombre", cf_email:"Email", cf_message:"Mensaje",
@@ -601,6 +625,9 @@
       price_note:"Les locations à la quinzaine sont privilégiées.",
       month_jul:"Juillet", month_aug:"Août", month_sep:"Septembre",
       price_unit:"/ quinzaine",
+      kicker_dates:"Disponibilité", dates_title:"Dates disponibles",
+      dates_intro:"Ce sont les périodes réservées ou disponibles.",
+      dates_empty:"Bientôt.", dates_libre:"Libre", dates_res:"Réservée",
       kicker_contact:"Réservation", contact_title:"Contact",
       contact_intro:"Des questions ou envie de réserver des dates ? Écrivez-nous et nous vous répondrons dès que possible.",
       cf_name:"Nom", cf_email:"Email", cf_message:"Message",
@@ -653,6 +680,9 @@
       price_note:"Fortnight rentals are preferred.",
       month_jul:"July", month_aug:"August", month_sep:"September",
       price_unit:"/ fortnight",
+      kicker_dates:"Availability", dates_title:"Available dates",
+      dates_intro:"These are the reserved or available periods.",
+      dates_empty:"Coming soon.", dates_libre:"Available", dates_res:"Booked",
       kicker_contact:"Booking", contact_title:"Contact",
       contact_intro:"Questions or want to book dates? Write to us and we'll get back to you soon.",
       cf_name:"Name", cf_email:"Email", cf_message:"Message",
@@ -699,6 +729,25 @@
 
   // Contact form posts natively to Web3Forms, which redirects to gracias.html
   apply(lang);
+
+  // Sección "Fechas disponibles" (oculta hasta que DATES_VISIBLE=true)
+  var DATES_VISIBLE = false;
+  var datesSection = document.getElementById('disponibilidad');
+  if (datesSection && DATES_VISIBLE) {
+    fetch('/api/state').then(function(r){ return r.json(); }).then(function(d){
+      var list = document.getElementById('dates-list');
+      datesSection.hidden = false;
+      if (!d || !d.availability || !d.availability.length){
+        list.innerHTML = '<p>' + I18N[lang].dates_empty + '</p>';
+        return;
+      }
+      list.innerHTML = d.availability.map(function(a){
+        var libre = a.status !== 'res';
+        return '<div class="date-card"><span class="range">' + a.from + ' → ' + a.to + '</span>' +
+          '<span class="pill ' + (libre ? 'libre' : 'res') + '">' + (libre ? I18N[lang].dates_libre : I18N[lang].dates_res) + '</span></div>';
+      }).join('');
+    }).catch(function(){});
+  }
 })();
 </script>
 

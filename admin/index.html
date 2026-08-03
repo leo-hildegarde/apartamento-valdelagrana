@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Valdelagrana · Gestión</title>
+<style>
+  :root{--foam:#4a717a;--foam-deep:#3b5d64;--ink:#21353a;--muted:#556a70;--line:#e4ddd0;--bg:#f5f1e8}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink);padding:28px 18px}
+  .wrap{max-width:760px;margin:0 auto}
+  header{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
+  header h1{font-size:1.3rem;font-weight:700;color:var(--foam-deep)}
+  header a{color:var(--foam);text-decoration:none;font-size:.9rem}
+  .card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;margin-bottom:20px;box-shadow:0 10px 26px rgba(45,70,76,.06)}
+  .card h2{font-size:1.05rem;font-weight:600;color:var(--foam-deep);margin-bottom:16px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  label{display:block;font-size:.82rem;font-weight:600;color:var(--muted);margin-bottom:6px}
+  input,select{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:11px;font-family:inherit;font-size:.95rem;background:#fff;color:var(--ink)}
+  input:focus,select:focus{outline:none;border-color:var(--foam)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:0;border-radius:999px;font-weight:600;font-size:.9rem;cursor:pointer;padding:11px 20px}
+  .btn.solid{background:var(--foam);color:#fff}
+  .btn.solid:hover{background:var(--foam-deep)}
+  .btn.mini{padding:6px 12px;font-size:.8rem}
+  .btn.ghost{background:#f1ece1;color:var(--ink)}
+  .status{min-height:1.2em;font-size:.86rem;margin-top:12px}
+  .status.ok{color:#1e7e44}
+  .status.err{color:#b23a2e}
+  .av-add{display:grid;grid-template-columns:1fr 1fr auto auto;gap:10px;align-items:end;margin-bottom:16px}
+  .av-list{display:flex;flex-direction:column;gap:10px}
+  .av-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border:1px solid var(--line);border-radius:12px}
+  .av-row .dates{font-weight:600;font-size:.92rem}
+  .badge{padding:3px 10px;border-radius:999px;font-size:.78rem;font-weight:600}
+  .badge.libre{background:#e2f3e6;color:#1e7e44}
+  .badge.res{background:#fde3df;color:#b23a2e}
+  .av-actions{display:flex;gap:8px}
+  @media(max-width:520px){.grid3,.av-add{grid-template-columns:1fr}.av-row{flex-wrap:wrap}}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Valdelagrana · Gestión</h1>
+      <a href="../">← Ver la página</a>
+    </header>
+
+    <section class="card">
+      <h2>Precios (€ / quincena)</h2>
+      <div class="grid3">
+        <div><label>Julio</label><input type="number" id="pJul" min="0" step="1"></div>
+        <div><label>Agosto</label><input type="number" id="pAgo" min="0" step="1"></div>
+        <div><label>Septiembre</label><input type="number" id="pSep" min="0" step="1"></div>
+      </div>
+      <button class="btn solid" id="savePrices" style="margin-top:16px">Guardar precios</button>
+      <p class="status" id="statusPrices"></p>
+    </section>
+
+    <section class="card">
+      <h2>Fechas disponibles</h2>
+      <div class="av-add">
+        <div><label>Desde</label><input type="date" id="dFrom"></div>
+        <div><label>Hasta</label><input type="date" id="dTo"></div>
+        <div>
+          <label>Estado</label>
+          <select id="dStatus">
+            <option value="libre">Libre</option>
+            <option value="res">Reservada</option>
+          </select>
+        </div>
+        <button class="btn solid" id="addRange" style="white-space:nowrap">Añadir</button>
+      </div>
+      <div class="av-list" id="avList"></div>
+      <p class="status" id="statusAv"></p>
+    </section>
+  </div>
+
+<script>
+  var state = { prices:{jul:'',ago:'',sep:''}, availability:[] };
+
+  function status(id, txt, ok){
+    var el = document.getElementById(id);
+    el.textContent = txt;
+    el.className = 'status' + (ok ? ' ok' : ' err');
+  }
+
+  function renderList(){
+    var box = document.getElementById('avList');
+    if (!state.availability.length){ box.innerHTML = '<p style="color:var(--muted);font-size:.9rem">No hay rangos todavía.</p>'; return; }
+    box.innerHTML = state.availability.map(function(a, i){
+      var badge = a.status === 'res' ? 'res' : 'libre';
+      var label = a.status === 'res' ? 'Reservada' : 'Libre';
+      return '<div class="av-row"><span class="dates">' + a.from + ' → ' + a.to + '</span>' +
+        '<span class="badge ' + badge + '">' + label + '</span>' +
+        '<div class="av-actions">' +
+          '<button class="btn ghost mini" data-toggle="' + i + '">' + (a.status==='res'?'Marcar libre':'Marcar res.') + '</button>' +
+          '<button class="btn ghost mini" data-del="' + i + '">Eliminar</button>' +
+        '</div></div>';
+    }).join('');
+    box.querySelectorAll('[data-toggle]').forEach(function(b){
+      b.addEventListener('click', function(){
+        var i = +b.getAttribute('data-toggle');
+        state.availability[i].status = state.availability[i].status==='res' ? 'libre' : 'res';
+        saveAv();
+      });
+    });
+    box.querySelectorAll('[data-del]').forEach(function(b){
+      b.addEventListener('click', function(){
+        state.availability.splice(+b.getAttribute('data-del'), 1);
+        saveAv();
+      });
+    });
+  }
+
+  function fillPrices(){
+    document.getElementById('pJul').value = state.prices.jul;
+    document.getElementById('pAgo').value = state.prices.ago;
+    document.getElementById('pSep').value = state.prices.sep;
+  }
+
+  function load(){
+    fetch('/api/admin').then(function(r){ return r.json(); }).then(function(d){
+      state = d;
+      fillPrices(); renderList();
+    }).catch(function(){ status('statusAv','No se pudo cargar (¿acceso /api/admin protegido?).',''); });
+  }
+
+  function put(){
+    return fetch('/api/admin', { method:'PUT', headers:{'Content-Type':'application/json'}, body: JSON.stringify(state) })
+      .then(function(r){ if (!r.ok) throw 0; return r.json(); });
+  }
+
+  function savePrices(){
+    state.prices = { jul: document.getElementById('pJul').value, ago: document.getElementById('pAgo').value, sep: document.getElementById('pSep').value };
+    put().then(function(){ status('statusPrices','Guardado.', true); })
+         .catch(function(){ status('statusPrices','Error al guardar.', false); });
+  }
+
+  function saveAv(){
+    renderList();
+    put().then(function(){ status('statusAv','Guardado.', true); })
+         .catch(function(){ status('statusAv','Error al guardar.', false); });
+  }
+
+  document.getElementById('addRange').addEventListener('click', function(){
+    var from = document.getElementById('dFrom').value;
+    var to = document.getElementById('dTo').value;
+    var st = document.getElementById('dStatus').value;
+    if (!from || !to || from > to){ status('statusAv','Revisa las fechas (desde ≤ hasta).', false); return; }
+    state.availability.push({ from: from, to: to, status: st });
+    saveAv();
+  });
+
+  document.getElementById('savePrices').addEventListener('click', savePrices);
+  load();
+</script>
+</body>
+</html>
