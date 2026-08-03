@@ -207,6 +207,8 @@
   .contact-form .btn{justify-content:center;width:100%}
   .contact-form .btn:disabled{opacity:.6;cursor:not-allowed}
   .cf-botcheck{position:absolute;left:-9999px;opacity:0}
+  .cf-msg{font-size:.88rem;color:#ffd7a8;text-align:center;margin:-4px 0 0}
+  .h-captcha{display:flex;justify-content:center}
   @media (max-width:380px){
     .brand{font-size:.96rem}
     .brand .dot{width:30px;height:30px}
@@ -482,6 +484,8 @@
           <span data-i18n="cf_message">Mensaje</span>
           <textarea name="message" rows="5" required></textarea>
         </label>
+        <div class="h-captcha" data-captcha="true"></div>
+        <p class="cf-msg" id="cfCaptchaMsg" hidden data-i18n="cf_captcha">Por favor, marca la casilla de verificación para continuar.</p>
         <button class="btn btn-solid" type="submit" data-i18n="cf_send">Enviar</button>
       </form>
     </div>
@@ -549,6 +553,7 @@
       contact_intro:"¿Preguntas o quieres reservar fechas? Escríbenos y te responderemos lo antes posible.",
       cf_name:"Nombre", cf_email:"Email", cf_message:"Mensaje",
       cf_send:"Enviar",
+      cf_captcha:"Por favor, marca la casilla de verificación para continuar.",
       footer_note:"Alquiler vacacional · ES / FR / EN"
     },
     fr: {
@@ -600,6 +605,7 @@
       contact_intro:"Des questions ou envie de réserver des dates ? Écrivez-nous et nous vous répondrons dès que possible.",
       cf_name:"Nom", cf_email:"Email", cf_message:"Message",
       cf_send:"Envoyer",
+      cf_captcha:"Veuillez cocher la case de vérification pour continuer.",
       footer_note:"Location de vacances · ES / FR / EN"
     },
     en: {
@@ -651,6 +657,7 @@
       contact_intro:"Questions or want to book dates? Write to us and we'll get back to you soon.",
       cf_name:"Name", cf_email:"Email", cf_message:"Message",
       cf_send:"Send",
+      cf_captcha:"Please check the verification box to continue.",
       footer_note:"Holiday rental · ES / FR / EN"
     }
   };
@@ -693,6 +700,26 @@
   // Contact form posts natively to Web3Forms, which redirects to gracias.html
   apply(lang);
 })();
+</script>
+
+<!-- hCaptcha via Web3Forms (zero-config) -->
+<script src="https://web3forms.com/client/script.js" async defer></script>
+<script>
+  // Prevent submission until hCaptcha is solved; show a localized hint
+  (function(){
+    var form = document.getElementById('contactForm');
+    if (!form) return;
+    var msg = document.getElementById('cfCaptchaMsg');
+    form.addEventListener('submit', function(e){
+      var cap = form.querySelector('textarea[name="h-captcha-response"]');
+      if (cap && !cap.value) {
+        e.preventDefault();
+        if (msg) msg.hidden = false;
+      } else if (msg) {
+        msg.hidden = true;
+      }
+    });
+  })();
 </script>
 </body>
 </html>
