@@ -211,26 +211,6 @@
     .lang-switch button{padding:5px 8px}
   }
 
-  /* Access gate */
-  .gate{
-    position:fixed;inset:0;z-index:200;
-    background:linear-gradient(150deg,rgba(74,113,122,.18),rgba(74,113,122,.32)),var(--cream);
-    display:flex;align-items:center;justify-content:center;padding:20px;text-align:center;
-  }
-  .gate.hidden{display:none}
-  .gate-card{
-    background:#fff;border:1px solid var(--line);border-radius:20px;
-    padding:40px 34px;max-width:380px;width:100%;box-shadow:var(--shadow);
-  }
-  .gate-logo{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--foam),var(--foam-deep));display:grid;place-items:center;margin:0 auto 18px;color:#fff}
-  .gate-card h3{font-weight:600;font-size:1.4rem;color:var(--foam-ink);margin-bottom:8px}
-  .gate-card p{color:var(--muted);font-size:.95rem;margin-bottom:22px}
-  #gateForm{display:flex;flex-direction:column;gap:12px}
-  #gatePass{padding:13px 16px;border:1px solid var(--line);border-radius:999px;font-family:'Inter',sans-serif;font-size:1rem;text-align:center;outline:none;color:var(--ink)}
-  #gatePass:focus{border-color:var(--foam-deep)}
-  #gateForm .btn{width:100%;justify-content:center}
-  .gate-err{display:none;color:#b23a2e;font-size:.88rem;margin-top:14px}
-
   /* Footer */
   footer{background:var(--foam-dark);color:rgba(255,255,255,.8);padding:36px 0;font-size:.9rem}
   footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
@@ -238,22 +218,6 @@
 </style>
 </head>
 <body>
-
-<!-- ============ ACCESS GATE ============ -->
-<div class="gate" id="gate">
-  <div class="gate-card">
-    <div class="gate-logo">
-      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 2c4 4 7 7.5 7 11a7 7 0 1 1-14 0c0-3.5 3-7 7-11z"/></svg>
-    </div>
-    <h3 data-i18n="gate_title">Apartamento Valdelagrana</h3>
-    <p data-i18n="gate_sub">Sitio privado. Introduce la contraseña para ver el apartamento.</p>
-    <form id="gateForm" autocomplete="off">
-      <input type="password" id="gatePass" placeholder="••••••" aria-label="Contraseña">
-      <button class="btn btn-solid" type="submit" style="justify-content:center" data-i18n="gate_btn">Entrar</button>
-    </form>
-    <p class="gate-err" id="gateErr" data-i18n="gate_err">Contraseña incorrecta.</p>
-  </div>
-</div>
 
 <!-- ============ HEADER ============ -->
 <header>
@@ -575,10 +539,6 @@
       month_jul:"Julio", month_aug:"Agosto", month_sep:"Septiembre",
       price_unit:"/ quincena",
       kicker_contact:"Reserva", contact_title:"Contacto",
-      gate_title:"Apartamento Valdelagrana",
-      gate_sub:"Sitio privado. Introduce la contraseña para ver el apartamento.",
-      gate_btn:"Entrar",
-      gate_err:"Contraseña incorrecta.",
       contact_intro:"¿Preguntas o quieres reservar fechas? Escríbenos por email o WhatsApp.",
       contact_email:"Email", contact_wa:"WhatsApp",
       footer_note:"Alquiler vacacional · ES / FR / EN"
@@ -629,10 +589,6 @@
       month_jul:"Juillet", month_aug:"Août", month_sep:"Septembre",
       price_unit:"/ quinzaine",
       kicker_contact:"Réservation", contact_title:"Contact",
-      gate_title:"Apartamento Valdelagrana",
-      gate_sub:"Site privé. Saisissez le mot de passe pour voir l'appartement.",
-      gate_btn:"Entrer",
-      gate_err:"Mot de passe incorrect.",
       contact_intro:"Des questions ou envie de réserver des dates ? Écrivez-nous par email ou WhatsApp.",
       contact_email:"Email", contact_wa:"WhatsApp",
       footer_note:"Location de vacances · ES / FR / EN"
@@ -683,10 +639,6 @@
       month_jul:"July", month_aug:"August", month_sep:"September",
       price_unit:"/ fortnight",
       kicker_contact:"Booking", contact_title:"Contact",
-      gate_title:"Apartamento Valdelagrana",
-      gate_sub:"Private site. Enter the password to view the apartment.",
-      gate_btn:"Enter",
-      gate_err:"Incorrect password.",
       contact_intro:"Questions or want to book dates? Email or WhatsApp us.",
       contact_email:"Email", contact_wa:"WhatsApp",
       footer_note:"Holiday rental · ES / FR / EN"
@@ -727,24 +679,6 @@
   });
   lb.addEventListener('click', function(){ lb.classList.remove('open'); });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') lb.classList.remove('open'); });
-
-  // Access gate (client-side barrier only - the content is still served publicly)
-  var GATE_PASS = 'solymar';
-  var gateEl = document.getElementById('gate');
-  if (sessionStorage.getItem('vg-unlocked') === '1') {
-    gateEl.classList.add('hidden');
-  } else {
-    document.getElementById('gateForm').addEventListener('submit', function(e){
-      e.preventDefault();
-      if (document.getElementById('gatePass').value === GATE_PASS) {
-        sessionStorage.setItem('vg-unlocked', '1');
-        gateEl.classList.add('hidden');
-      } else {
-        document.getElementById('gateErr').style.display = 'block';
-        document.getElementById('gatePass').value = '';
-      }
-    });
-  }
 
   apply(lang);
 })();
