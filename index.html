@@ -464,17 +464,17 @@
       <p data-i18n="contact_intro">¿Preguntas o quieres reservar fechas? Escríbenos por email o WhatsApp.</p>
     </div>
     <div class="contact-grid">
-      <a class="contact-card" href="mailto:valdelagrana@dhlr.net">
+      <a class="contact-card" href="#" data-ctlink="email">
         <span class="ico mail">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
         </span>
-        <span><b data-i18n="contact_email">Email</b><span>valdelagrana@dhlr.net</span></span>
+        <span><b data-i18n="contact_email">Email</b><span id="ct-email">…</span></span>
       </a>
-      <a class="contact-card" href="https://wa.me/34624042176" target="_blank" rel="noopener">
+      <a class="contact-card" href="#" data-ctlink="wa" target="_blank" rel="noopener">
         <span class="ico wa">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.5L3 21l2-5.5A8.5 8.5 0 1 1 21 11.5z"/><path d="M9 9.5c.5 3 3 5.5 6 6l1.5-2-2-1-1.5.5c-1-.5-2-1.5-2.5-2.5l.5-1.5-1-2z"/></svg>
         </span>
-        <span><b data-i18n="contact_wa">WhatsApp</b><span>+34 624 04 21 76</span></span>
+        <span><b data-i18n="contact_wa">WhatsApp</b><span id="ct-wa">…</span></span>
       </a>
     </div>
   </div>
@@ -678,6 +678,18 @@
   });
   lb.addEventListener('click', function(){ lb.classList.remove('open'); });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') lb.classList.remove('open'); });
+
+  // Contact details are reassembled at runtime so the raw HTML source holds no
+  // plaintext email/phone or mailto:/wa.me links, keeping naive scrapers out.
+  // The strings below are the values reversed; rev() restores them.
+  function rev(s){ return s.split('').reverse().join(''); }
+  var ctEmail = rev('ten.rlhd@anargaledlav');
+  var ctWaRaw = rev('67124042643+');
+  var ctWaText = ctWaRaw.replace(/^(\+\d{2})(\d{3})(\d{2})(\d{2})(\d{2})$/, '$1 $2 $3 $4 $5');
+  document.getElementById('ct-email').textContent = ctEmail;
+  document.getElementById('ct-wa').textContent = ctWaText;
+  document.querySelector('[data-ctlink="email"]').href = 'mailto:' + ctEmail;
+  document.querySelector('[data-ctlink="wa"]').href = 'https://wa.me/' + ctWaRaw.slice(1);
 
   apply(lang);
 })();
