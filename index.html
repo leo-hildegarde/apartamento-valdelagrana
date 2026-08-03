@@ -207,9 +207,6 @@
   .contact-form .btn{justify-content:center;width:100%}
   .contact-form .btn:disabled{opacity:.6;cursor:not-allowed}
   .cf-botcheck{position:absolute;left:-9999px;opacity:0}
-  .cf-status{min-height:1.2em;font-size:.92rem;margin:2px 0 0}
-  .cf-status.ok{color:#6fe3a5}
-  .cf-status.err{color:#ff9d94}
   @media (max-width:380px){
     .brand{font-size:.96rem}
     .brand .dot{width:30px;height:30px}
@@ -486,7 +483,6 @@
           <textarea name="message" rows="5" required></textarea>
         </label>
         <button class="btn btn-solid" type="submit" data-i18n="cf_send">Enviar</button>
-        <p class="cf-status" id="cfStatus" role="status"></p>
       </form>
     </div>
   </div>
@@ -552,9 +548,7 @@
       kicker_contact:"Reserva", contact_title:"Contacto",
       contact_intro:"¿Preguntas o quieres reservar fechas? Escríbenos y te responderemos lo antes posible.",
       cf_name:"Nombre", cf_email:"Email", cf_message:"Mensaje",
-      cf_send:"Enviar", cf_sending:"Enviando…",
-      cf_ok:"Gracias. Tu mensaje se ha enviado correctamente.",
-      cf_err:"No se pudo enviar el mensaje. Inténtalo de nuevo.",
+      cf_send:"Enviar",
       footer_note:"Alquiler vacacional · ES / FR / EN"
     },
     fr: {
@@ -605,9 +599,7 @@
       kicker_contact:"Réservation", contact_title:"Contact",
       contact_intro:"Des questions ou envie de réserver des dates ? Écrivez-nous et nous vous répondrons dès que possible.",
       cf_name:"Nom", cf_email:"Email", cf_message:"Message",
-      cf_send:"Envoyer", cf_sending:"Envoi en cours…",
-      cf_ok:"Merci. Votre message a bien été envoyé.",
-      cf_err:"Le message n'a pas pu être envoyé. Veuillez réessayer.",
+      cf_send:"Envoyer",
       footer_note:"Location de vacances · ES / FR / EN"
     },
     en: {
@@ -658,9 +650,7 @@
       kicker_contact:"Booking", contact_title:"Contact",
       contact_intro:"Questions or want to book dates? Write to us and we'll get back to you soon.",
       cf_name:"Name", cf_email:"Email", cf_message:"Message",
-      cf_send:"Send", cf_sending:"Sending…",
-      cf_ok:"Thanks. Your message has been sent successfully.",
-      cf_err:"Your message could not be sent. Please try again.",
+      cf_send:"Send",
       footer_note:"Holiday rental · ES / FR / EN"
     }
   };
@@ -700,36 +690,7 @@
   lb.addEventListener('click', function(){ lb.classList.remove('open'); });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') lb.classList.remove('open'); });
 
-  // Contact form (Web3Forms) - submit in the background, no page reload
-  var cf = document.getElementById('contactForm');
-  var cfStatus = document.getElementById('cfStatus');
-  cf.addEventListener('submit', function(e){
-    e.preventDefault();
-    var bot = cf.querySelector('[name="botcheck"]');
-    if (bot && bot.checked) return; // honeypot: silently drop bots
-    var btn = cf.querySelector('button[type="submit"]');
-    cfStatus.textContent = I18N[lang].cf_sending;
-    cfStatus.className = 'cf-status';
-    btn.disabled = true;
-    fetch('https://api.web3forms.com/submit', { method:'POST', body: new FormData(cf), headers:{'Accept':'application/json'} })
-      .then(function(r){ return r.json(); })
-      .then(function(res){
-        if (res && res.success) {
-          cfStatus.textContent = I18N[lang].cf_ok;
-          cfStatus.className = 'cf-status ok';
-          cf.reset();
-        } else {
-          cfStatus.textContent = I18N[lang].cf_err;
-          cfStatus.className = 'cf-status err';
-        }
-      })
-      .catch(function(){
-        cfStatus.textContent = I18N[lang].cf_err;
-        cfStatus.className = 'cf-status err';
-      })
-      .then(function(){ btn.disabled = false; });
-  });
-
+  // Contact form posts natively to Web3Forms, which redirects to gracias.html
   apply(lang);
 })();
 </script>

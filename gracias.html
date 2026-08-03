@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gracias · Valdelagrana</title>
+<style>
+  :root{
+    --cream:#faf7f0; --foam:#4a717a; --foam-deep:#3b5d64; --foam-ink:#2d464c;
+    --ink:#21353a; --line:#e4ddd0; --sand:#e9dcc3;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    background:linear-gradient(150deg,#fff 0%,var(--cream) 55%,#f3ecdf 100%);
+    color:var(--ink);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;
+  }
+  .card{
+    background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:0 18px 50px rgba(45,70,76,.10);
+    max-width:520px;width:100%;padding:52px 40px;text-align:center;
+  }
+  .badge{
+    width:84px;height:84px;border-radius:50%;margin:0 auto 26px;
+    background:linear-gradient(135deg,var(--foam),var(--foam-deep));
+    display:flex;align-items:center;justify-content:center;color:#fff;
+  }
+  h1{font-size:2rem;font-weight:700;color:var(--foam-ink);margin-bottom:14px}
+  p{font-size:1.05rem;line-height:1.6;color:#556a70;margin-bottom:30px}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    background:var(--foam);color:#fff;text-decoration:none;font-weight:600;font-size:1rem;
+    padding:14px 30px;border-radius:999px;transition:background .15s ease;
+  }
+  .btn:hover{background:var(--foam-deep)}
+</style>
+</head>
+<body>
+  <main class="card">
+    <div class="badge">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+    </div>
+    <h1 id="t">¡Gracias!</h1>
+    <p id="m">Tu mensaje se ha enviado correctamente. Te contactaremos en breve.</p>
+    <a class="btn" id="back" href="./">Volver a la página</a>
+  </main>
+
+  <script>
+    var TEXTS = {
+      es:{ t:"¡Gracias!", m:"Tu mensaje se ha enviado correctamente. Te contactaremos en breve.", back:"Volver a la página" },
+      fr:{ t:"Merci !", m:"Votre message a bien été envoyé. Nous vous contacterons très vite.", back:"Retour à la page" },
+      en:{ t:"Thank you!", m:"Your message was sent successfully. We'll get back to you shortly.", back:"Back to the page" }
+    };
+    var l = new URLSearchParams(location.search).get('lang');
+    if (!l || !TEXTS[l]) {
+      try { l = localStorage.getItem('vdg-lang'); } catch(e){}
+    }
+    if (!l || !TEXTS[l]) l = 'es';
+    document.documentElement.lang = l;
+    var x = TEXTS[l];
+    document.getElementById('t').textContent = x.t;
+    document.getElementById('m').textContent = x.m;
+    document.getElementById('back').textContent = x.back;
+  </script>
+</body>
+</html>
