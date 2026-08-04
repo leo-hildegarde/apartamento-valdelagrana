@@ -67,7 +67,7 @@
   /* ---------- Hero ---------- */
   .hero{
     position:relative;color:#fff;
-    background:linear-gradient(180deg,rgba(38,58,62,.52),rgba(38,58,62,.28) 55%,rgba(38,58,62,.62)),url('images/photo-12.jpg') center/cover no-repeat;
+    background:linear-gradient(180deg,rgba(38,58,62,.52),rgba(38,58,62,.28) 55%,rgba(38,58,62,.62)),url('images/hero.webp') center/cover no-repeat;
     min-height:82vh;display:flex;align-items:center;overflow:hidden;
   }
   .hero-inner{position:relative;z-index:1;max-width:740px;padding:120px 22px 100px}
@@ -421,31 +421,106 @@
       <h2 data-i18n="gal_title">Galería</h2>
     </div>
     <div class="gal-grid">
-      <img src="images/living-room.jpg" alt="Salón" loading="lazy">
-      <img src="images/liv-balc-1.jpg" alt="Salón con balcón" loading="lazy">
-      <img src="images/liv-balc-2.jpg" alt="Salón con balcón" loading="lazy">
-      <img src="images/liv-balc-3.jpg" alt="Salón con sofá" loading="lazy">
-      <img src="images/twin-bed-1.jpg" alt="Habitación con dos camas" loading="lazy">
-      <img src="images/twin-bed-2.jpg" alt="Habitación con dos camas" loading="lazy">
-      <img src="images/twin-bed-3.jpg" alt="Habitación con dos camas y ventana" loading="lazy">
-      <img src="images/sofa-bed.jpg" alt="Salón con sofá cama" loading="lazy">
-      <img src="images/kitchen-1.jpg" alt="Cocina" loading="lazy">
-      <img src="images/kitchen-2.jpg" alt="Cocina" loading="lazy">
-      <img src="images/appliances.jpg" alt="Electrodomésticos de cocina" loading="lazy">
-      <img src="images/dining.jpg" alt="Comedor" loading="lazy">
-      <img src="images/bathroom.jpg" alt="Baño con ducha" loading="lazy">
-      <img src="images/closet.jpg" alt="Armario de entrada" loading="lazy">
-      <img src="images/studio-balc.jpg" alt="Balcón del estudio" loading="lazy">
-      <img src="images/terrace-1.jpg" alt="Terraza acristalada" loading="lazy">
-      <img src="images/terrace-2.jpg" alt="Terraza acristalada" loading="lazy">
-      <img src="images/apt-beach.jpg" alt="Complejo visto desde la playa" loading="lazy">
-      <img src="images/pool-night.jpg" alt="Piscina de noche" loading="lazy">
-      <img src="images/pool-night2.jpg" alt="Piscina de noche" loading="lazy">
-      <img src="images/boardwalk.jpg" alt="Paseo marítimo" loading="lazy">
-      <img src="images/beach-bar.jpg" alt="Chiringuito de noche" loading="lazy">
-      <img src="images/entry-sign.jpg" alt="Entrada con cartel" loading="lazy">
-      <img src="images/lifeguard.jpg" alt="Torre de socorrismo" loading="lazy">
-      <img src="images/ferry-boat.jpg" alt="Barco" loading="lazy">
+      <picture>
+        <source type="image/webp" srcset="images/webp/tile/living-room.webp 800w, images/webp/full/living-room.webp 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw">
+        <img src="images/jpg/tile/living-room.jpg" srcset="images/jpg/tile/living-room.jpg 800w, images/jpg/full/living-room.jpg 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw" width="800" height="600" alt="Salón" loading="lazy" data-full-src="images/jpg/full/living-room.jpg">
+      </picture>
+      <picture>
+        <source type="image/webp" srcset="images/webp/tile/liv-balc-1.webp 800w, images/webp/full/liv-balc-1.webp 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw">
+        <img src="images/jpg/tile/liv-balc-1.jpg" srcset="images/jpg/tile/liv-balc-1.jpg 800w, images/jpg/full/liv-balc-1.jpg 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw" width="800" height="600" alt="Salón con balcón" loading="lazy" data-full-src="images/jpg/full/liv-balc-1.jpg">
+      </picture>
+      <picture>
+        <source type="image/webp" srcset="images/webp/tile/liv-balc-2.webp 800w, images/webp/full/liv-balc-2.webp 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw">
+        <img src="images/jpg/tile/liv-balc-2.jpg" srcset="images/jpg/tile/liv-balc-2.jpg 800w, images/jpg/full/liv-balc-2.jpg 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw" width="800" height="600" alt="Salón con balcón" loading="lazy" data-full-src="images/jpg/full/liv-balc-2.jpg">
+      </picture>
+      <picture>
+        <source type="image/webp" srcset="images/webp/tile/liv-balc-3.webp 800w, images/webp/full/liv-balc-3.webp 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw">
+        <img src="images/jpg/tile/liv-balc-3.jpg" srcset="images/jpg/tile/liv-balc-3.jpg 800w, images/jpg/full/liv-balc-3.jpg 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw" width="800" height="600" alt="Salón con sofá" loading="lazy" data-full-src="images/jpg/full/liv-balc-3.jpg">
+      </picture>
+      <picture>
+        <source type="image/webp" srcset="images/webp/tile/twin-bed-1.webp 800w, images/webp/full/twin-bed-1.webp 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw">
+        <img src="images/jpg/tile/twin-bed-1.jpg" srcset="images/jpg/tile/twin-bed-1.jpg 800w, images/jpg/full/twin-bed-1.jpg 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw" width="800" height="600" alt="Habitación con dos camas" loading="lazy" data-full-src="images/jpg/full/twin-bed-1.jpg">
+      </picture>
+      <picture>
+        <source type="image/webp" srcset="images/webp/tile/twin-bed-2.webp 800w, images/webp/full/twin-bed-2.webp 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw">
+        <img src="images/jpg/tile/twin-bed-2.jpg" srcset="images/jpg/tile/twin-bed-2.jpg 800w, images/jpg/full/twin-bed-2.jpg 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw" width="800" height="600" alt="Habitación con dos camas" loading="lazy" data-full-src="images/jpg/full/twin-bed-2.jpg">
+      </picture>
+      <picture>
+        <source type="image/webp" srcset="images/webp/tile/twin-bed-3.webp 800w, images/webp/full/twin-bed-3.webp 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw">
+        <img src="images/jpg/tile/twin-bed-3.jpg" srcset="images/jpg/tile/twin-bed-3.jpg 800w, images/jpg/full/twin-bed-3.jpg 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw" width="800" height="600" alt="Habitación con dos camas y ventana" loading="lazy" data-full-src="images/jpg/full/twin-bed-3.jpg">
+      </picture>
+      <picture>
+        <source type="image/webp" srcset="images/webp/tile/sofa-bed.webp 800w, images/webp/full/sofa-bed.webp 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw">
+        <img src="images/jpg/tile/sofa-bed.jpg" srcset="images/jpg/tile/sofa-bed.jpg 800w, images/jpg/full/sofa-bed.jpg 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw" width="800" height="600" alt="Salón con sofá cama" loading="lazy" data-full-src="images/jpg/full/sofa-bed.jpg">
+      </picture>
+      <picture>
+        <source type="image/webp" srcset="images/webp/tile/kitchen-1.webp 800w, images/webp/full/kitchen-1.webp 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw">
+        <img src="images/jpg/tile/kitchen-1.jpg" srcset="images/jpg/tile/kitchen-1.jpg 800w, images/jpg/full/kitchen-1.jpg 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw" width="800" height="600" alt="Cocina" loading="lazy" data-full-src="images/jpg/full/kitchen-1.jpg">
+      </picture>
+      <picture>
+        <source type="image/webp" srcset="images/webp/tile/kitchen-2.webp 800w, images/webp/full/kitchen-2.webp 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw">
+        <img src="images/jpg/tile/kitchen-2.jpg" srcset="images/jpg/tile/kitchen-2.jpg 800w, images/jpg/full/kitchen-2.jpg 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw" width="800" height="600" alt="Cocina" loading="lazy" data-full-src="images/jpg/full/kitchen-2.jpg">
+      </picture>
+      <picture>
+        <source type="image/webp" srcset="images/webp/tile/appliances.webp 800w, images/webp/full/appliances.webp 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw">
+        <img src="images/jpg/tile/appliances.jpg" srcset="images/jpg/tile/appliances.jpg 800w, images/jpg/full/appliances.jpg 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw" width="800" height="600" alt="Electrodomésticos de cocina" loading="lazy" data-full-src="images/jpg/full/appliances.jpg">
+      </picture>
+      <picture>
+        <source type="image/webp" srcset="images/webp/tile/dining.webp 800w, images/webp/full/dining.webp 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw">
+        <img src="images/jpg/tile/dining.jpg" srcset="images/jpg/tile/dining.jpg 800w, images/jpg/full/dining.jpg 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw" width="800" height="600" alt="Comedor" loading="lazy" data-full-src="images/jpg/full/dining.jpg">
+      </picture>
+      <picture>
+        <source type="image/webp" srcset="images/webp/tile/bathroom.webp 800w, images/webp/full/bathroom.webp 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw">
+        <img src="images/jpg/tile/bathroom.jpg" srcset="images/jpg/tile/bathroom.jpg 800w, images/jpg/full/bathroom.jpg 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw" width="800" height="600" alt="Baño con ducha" loading="lazy" data-full-src="images/jpg/full/bathroom.jpg">
+      </picture>
+      <picture>
+        <source type="image/webp" srcset="images/webp/tile/closet.webp 800w, images/webp/full/closet.webp 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw">
+        <img src="images/jpg/tile/closet.jpg" srcset="images/jpg/tile/closet.jpg 800w, images/jpg/full/closet.jpg 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw" width="800" height="600" alt="Armario de entrada" loading="lazy" data-full-src="images/jpg/full/closet.jpg">
+      </picture>
+      <picture>
+        <source type="image/webp" srcset="images/webp/tile/studio-balc.webp 800w, images/webp/full/studio-balc.webp 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw">
+        <img src="images/jpg/tile/studio-balc.jpg" srcset="images/jpg/tile/studio-balc.jpg 800w, images/jpg/full/studio-balc.jpg 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw" width="800" height="600" alt="Balcón del estudio" loading="lazy" data-full-src="images/jpg/full/studio-balc.jpg">
+      </picture>
+      <picture>
+        <source type="image/webp" srcset="images/webp/tile/terrace-1.webp 800w, images/webp/full/terrace-1.webp 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw">
+        <img src="images/jpg/tile/terrace-1.jpg" srcset="images/jpg/tile/terrace-1.jpg 800w, images/jpg/full/terrace-1.jpg 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw" width="800" height="600" alt="Terraza acristalada" loading="lazy" data-full-src="images/jpg/full/terrace-1.jpg">
+      </picture>
+      <picture>
+        <source type="image/webp" srcset="images/webp/tile/terrace-2.webp 800w, images/webp/full/terrace-2.webp 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw">
+        <img src="images/jpg/tile/terrace-2.jpg" srcset="images/jpg/tile/terrace-2.jpg 800w, images/jpg/full/terrace-2.jpg 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw" width="800" height="600" alt="Terraza acristalada" loading="lazy" data-full-src="images/jpg/full/terrace-2.jpg">
+      </picture>
+      <picture>
+        <source type="image/webp" srcset="images/webp/tile/apt-beach.webp 800w, images/webp/full/apt-beach.webp 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw">
+        <img src="images/jpg/tile/apt-beach.jpg" srcset="images/jpg/tile/apt-beach.jpg 800w, images/jpg/full/apt-beach.jpg 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw" width="800" height="600" alt="Complejo visto desde la playa" loading="lazy" data-full-src="images/jpg/full/apt-beach.jpg">
+      </picture>
+      <picture>
+        <source type="image/webp" srcset="images/webp/tile/pool-night.webp 800w, images/webp/full/pool-night.webp 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw">
+        <img src="images/jpg/tile/pool-night.jpg" srcset="images/jpg/tile/pool-night.jpg 800w, images/jpg/full/pool-night.jpg 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw" width="800" height="600" alt="Piscina de noche" loading="lazy" data-full-src="images/jpg/full/pool-night.jpg">
+      </picture>
+      <picture>
+        <source type="image/webp" srcset="images/webp/tile/pool-night2.webp 800w, images/webp/full/pool-night2.webp 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw">
+        <img src="images/jpg/tile/pool-night2.jpg" srcset="images/jpg/tile/pool-night2.jpg 800w, images/jpg/full/pool-night2.jpg 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw" width="800" height="600" alt="Piscina de noche" loading="lazy" data-full-src="images/jpg/full/pool-night2.jpg">
+      </picture>
+      <picture>
+        <source type="image/webp" srcset="images/webp/tile/boardwalk.webp 800w, images/webp/full/boardwalk.webp 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw">
+        <img src="images/jpg/tile/boardwalk.jpg" srcset="images/jpg/tile/boardwalk.jpg 800w, images/jpg/full/boardwalk.jpg 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw" width="800" height="600" alt="Paseo marítimo" loading="lazy" data-full-src="images/jpg/full/boardwalk.jpg">
+      </picture>
+      <picture>
+        <source type="image/webp" srcset="images/webp/tile/beach-bar.webp 800w, images/webp/full/beach-bar.webp 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw">
+        <img src="images/jpg/tile/beach-bar.jpg" srcset="images/jpg/tile/beach-bar.jpg 800w, images/jpg/full/beach-bar.jpg 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw" width="800" height="600" alt="Chiringuito de noche" loading="lazy" data-full-src="images/jpg/full/beach-bar.jpg">
+      </picture>
+      <picture>
+        <source type="image/webp" srcset="images/webp/tile/entry-sign.webp 800w, images/webp/full/entry-sign.webp 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw">
+        <img src="images/jpg/tile/entry-sign.jpg" srcset="images/jpg/tile/entry-sign.jpg 800w, images/jpg/full/entry-sign.jpg 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw" width="800" height="600" alt="Entrada con cartel" loading="lazy" data-full-src="images/jpg/full/entry-sign.jpg">
+      </picture>
+      <picture>
+        <source type="image/webp" srcset="images/webp/tile/lifeguard.webp 800w, images/webp/full/lifeguard.webp 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw">
+        <img src="images/jpg/tile/lifeguard.jpg" srcset="images/jpg/tile/lifeguard.jpg 800w, images/jpg/full/lifeguard.jpg 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw" width="800" height="600" alt="Torre de socorrismo" loading="lazy" data-full-src="images/jpg/full/lifeguard.jpg">
+      </picture>
+      <picture>
+        <source type="image/webp" srcset="images/webp/tile/ferry-boat.webp 800w, images/webp/full/ferry-boat.webp 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw">
+        <img src="images/jpg/tile/ferry-boat.jpg" srcset="images/jpg/tile/ferry-boat.jpg 800w, images/jpg/full/ferry-boat.jpg 2000w" sizes="(max-width:480px) 48vw, (max-width:760px) 32vw, 25vw" width="800" height="600" alt="Barco" loading="lazy" data-full-src="images/jpg/full/ferry-boat.jpg">
+      </picture>
     </div>
   </div>
 </section>
@@ -738,7 +813,7 @@
   var lb = document.getElementById('lightbox');
   var lbImg = document.getElementById('lbImg');
   document.querySelectorAll('.gal-grid img').forEach(function(img){
-    img.addEventListener('click', function(){ lbImg.src = img.src; lb.classList.add('open'); });
+    img.addEventListener('click', function(){ lbImg.src = img.dataset.fullSrc || img.src; lb.classList.add('open'); });
   });
   lb.addEventListener('click', function(){ lb.classList.remove('open'); });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') lb.classList.remove('open'); });
