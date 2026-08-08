@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://web3forms.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' https://*.tile.openstreetmap.org data:; connect-src 'self' https://api.web3forms.com; form-action https://api.web3forms.com; base-uri 'self'">
 <title>Apartamento en la Playa de Valdelagrana · El Puerto de Santa María · Cádiz</title>
 <meta name="description" content="Apartamento de 45 m² con terraza a 150 m de la Playa de Valdelagrana, en El Puerto de Santa María (Cádiz). Piscina, parking, WiFi. Alquiler vacacional por quincenas.">
 <meta name="keywords" content="Valdelagrana, El Puerto de Santa María, Cádiz, alquiler apartamento, vacaciones, playa, alquiler vacacional, apartamento turístico, bahía de Cádiz">
@@ -65,7 +66,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="">
 <style>
   :root{
     --foam:#8fb0ab;
@@ -661,15 +662,15 @@
         <input type="checkbox" name="botcheck" class="cf-botcheck" tabindex="-1" autocomplete="off">
         <label class="cf-field">
           <span data-i18n="cf_name">Nombre</span>
-          <input type="text" name="name" required>
+          <input type="text" name="name" required maxlength="100" autocomplete="name">
         </label>
         <label class="cf-field">
           <span data-i18n="cf_email">Email</span>
-          <input type="email" name="email" required>
+          <input type="email" name="email" required maxlength="150" autocomplete="email">
         </label>
         <label class="cf-field">
           <span data-i18n="cf_message">Mensaje</span>
-          <textarea name="message" rows="5" required></textarea>
+          <textarea name="message" rows="5" required maxlength="2000"></textarea>
         </label>
         <div class="h-captcha" data-captcha="true"></div>
         <p class="cf-msg" id="cfCaptchaMsg" hidden data-i18n="cf_captcha">Por favor, marca la casilla de verificación para continuar.</p>
@@ -944,21 +945,31 @@
       var list = document.getElementById('dates-list');
       datesSection.hidden = false;
       if (!d || !d.availability || !d.availability.length){
-        list.innerHTML = '<p>' + I18N[lang].dates_empty + '</p>';
+        list.textContent = I18N[lang].dates_empty;
         return;
       }
-      list.innerHTML = d.availability.map(function(a){
+      list.textContent = '';
+      d.availability.forEach(function(a){
+        var card = document.createElement('div');
+        card.className = 'date-card';
+        var range = document.createElement('span');
+        range.className = 'range';
+        range.textContent = a.from + ' → ' + a.to;
+        var pill = document.createElement('span');
         var libre = a.status !== 'res';
-        return '<div class="date-card"><span class="range">' + a.from + ' → ' + a.to + '</span>' +
-          '<span class="pill ' + (libre ? 'libre' : 'res') + '">' + (libre ? I18N[lang].dates_libre : I18N[lang].dates_res) + '</span></div>';
-      }).join('');
+        pill.className = 'pill ' + (libre ? 'libre' : 'res');
+        pill.textContent = libre ? I18N[lang].dates_libre : I18N[lang].dates_res;
+        card.appendChild(range);
+        card.appendChild(pill);
+        list.appendChild(card);
+      });
     }).catch(function(){});
   }
 })();
 </script>
 
 <!-- hCaptcha via Web3Forms (zero-config) -->
-<script src="https://web3forms.com/client/script.js" async defer></script>
+<script src="https://web3forms.com/client/script.js" integrity="sha384-RAEN05LS0g1hNSQ83f+OkhWoEoxdCuUHArmMFGnF9YJzre1Fgg997JEue49FL+zH" crossorigin="anonymous" async defer></script>
 <script>
   // Prevent submission until hCaptcha is solved; show a localized hint
   (function(){
@@ -976,7 +987,7 @@
     });
   })();
 </script>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin=""></script>
 <script>
   (function(){
     var mapEl = document.getElementById('osm-map');
