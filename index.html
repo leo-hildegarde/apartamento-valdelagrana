@@ -968,12 +968,13 @@
   (function(){
     var mapEl = document.getElementById('osm-map');
     if (!mapEl || typeof L === 'undefined') return;
-    var map = L.map('osm-map', {scrollWheelZoom: false}).setView([36.5740, -6.2246], 9);
+    var map = L.map('osm-map', {scrollWheelZoom: false, minZoom: 4, maxZoom: 18});
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap',
       maxZoom: 18
     }).addTo(map);
     L.marker([36.5740, -6.2246]).addTo(map).bindPopup('Valdelagrana');
+    map.fitBounds([[35.5, -10.5], [44.5, 3.5]]);
     map.on('click', function(){ if (!map.scrollWheelZoom.enabled()) map.scrollWheelZoom.enable(); });
   })();
 </script>
