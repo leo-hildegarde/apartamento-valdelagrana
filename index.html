@@ -162,7 +162,10 @@
   }
   .travel-chip svg{color:var(--foam-deep)}
 
-  .loc-map{margin-top:34px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow)}
+  .loc-schematic{margin-top:34px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
+  .loc-schematic svg{width:100%;height:auto;display:block}
+
+  .loc-map{margin-top:20px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow)}
   .loc-map iframe{display:block;width:100%;height:380px;border:0}
   @media (max-width:760px){.loc-map iframe{height:300px}}
 
@@ -423,9 +426,58 @@
         <span data-i18n="travel_car">Cádiz 25 min · Jerez 15 min · Sevilla ~1 h 15</span>
       </span>
     </div>
+    <div class="loc-schematic">
+      <svg viewBox="0 0 720 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mapa esquemático de la provincia de Cádiz y alrededores">
+        <!-- Ocean -->
+        <rect width="720" height="420" fill="#d4e8ea"/>
+        <!-- Land -->
+        <path d="M0,0 L720,0 L720,420 L510,420 C430,360 360,320 280,280 C180,220 90,150 0,95 Z" fill="#f5ede0"/>
+        <!-- Coastline -->
+        <path d="M0,95 C90,150 180,220 280,280 C360,320 430,360 510,420" fill="none" stroke="#1a6b6b" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- Ocean waves -->
+        <path d="M40,340 Q60,335 80,340 T120,340" fill="none" stroke="#8ab8bd" stroke-width="1.5" opacity="0.6"/>
+        <path d="M180,380 Q200,375 220,380 T260,380" fill="none" stroke="#8ab8bd" stroke-width="1.5" opacity="0.6"/>
+        <path d="M60,300 Q80,295 100,300 T140,300" fill="none" stroke="#8ab8bd" stroke-width="1.5" opacity="0.5"/>
+        <text x="130" y="370" font-family="Inter,system-ui,sans-serif" font-size="13" fill="#5a8a8f" font-style="italic">Océano Atlántico</text>
+        <!-- Compass -->
+        <g transform="translate(675,55)">
+          <circle r="20" fill="#fff" stroke="#1a6b6b" stroke-width="1.5" opacity="0.9"/>
+          <path d="M0,-14 L4,0 L0,14 L-4,0 Z" fill="#1a6b6b"/>
+          <text x="0" y="-24" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#0d4d4d">N</text>
+        </g>
+        <!-- Faro / Portugal -->
+        <circle cx="95" cy="130" r="5" fill="#0d4d4d"/>
+        <text x="106" y="127" font-family="Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#143d3d">Faro</text>
+        <text x="106" y="142" font-family="Inter,system-ui,sans-serif" font-size="11" fill="#6a8a8a">Portugal · ~2h 45</text>
+        <!-- Doñana -->
+        <circle cx="235" cy="180" r="5" fill="#0d4d4d"/>
+        <text x="246" y="177" font-family="Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#143d3d">Doñana</text>
+        <text x="246" y="192" font-family="Inter,system-ui,sans-serif" font-size="11" fill="#6a8a8a">Parque Natural · ~1h</text>
+        <!-- Sevilla -->
+        <circle cx="500" cy="72" r="5" fill="#0d4d4d"/>
+        <text x="511" y="69" font-family="Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#143d3d">Sevilla</text>
+        <text x="511" y="84" font-family="Inter,system-ui,sans-serif" font-size="11" fill="#6a8a8a">~1h 15</text>
+        <!-- Jerez -->
+        <circle cx="440" cy="200" r="5" fill="#0d4d4d"/>
+        <text x="451" y="197" font-family="Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#143d3d">Jerez</text>
+        <text x="451" y="212" font-family="Inter,system-ui,sans-serif" font-size="11" fill="#6a8a8a">~15 min</text>
+        <!-- Cádiz -->
+        <circle cx="318" cy="285" r="5" fill="#0d4d4d"/>
+        <text x="308" y="282" text-anchor="end" font-family="Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#143d3d">Cádiz</text>
+        <text x="308" y="297" text-anchor="end" font-family="Inter,system-ui,sans-serif" font-size="11" fill="#6a8a8a">~25 min</text>
+        <!-- Valdelagrana (highlighted) -->
+        <circle cx="378" cy="262" r="10" fill="#d9b38c" stroke="#1a6b6b" stroke-width="2.5"/>
+        <circle cx="378" cy="262" r="3.5" fill="#1a6b6b"/>
+        <text x="392" y="258" font-family="Inter,system-ui,sans-serif" font-size="15" font-weight="700" fill="#0d4d4d">Valdelagrana</text>
+        <text x="392" y="274" font-family="Inter,system-ui,sans-serif" font-size="11" fill="#5a7a7a">El Puerto de Santa María</text>
+        <!-- Tarifa -->
+        <circle cx="540" cy="360" r="5" fill="#0d4d4d"/>
+        <text x="551" y="357" font-family="Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#143d3d">Tarifa</text>
+      </svg>
+    </div>
     <div class="loc-map">
       <iframe title="Mapa de Valdelagrana" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-        src="https://www.openstreetmap.org/export/embed.html?bbox=-6.2286%2C36.5710%2C-6.2206%2C36.5770&layer=mapnik&marker=36.5740%2C-6.2246"></iframe>
+        src="https://www.openstreetmap.org/export/embed.html?bbox=-6.260%2C36.560%2C-6.190%2C36.595&layer=mapnik&marker=36.5740%2C-6.2246"></iframe>
     </div>
   </div>
 </section>
