@@ -297,8 +297,12 @@
 
   /* Footer */
   footer{background:var(--foam-dark);color:rgba(255,255,255,.8);padding:36px 0;font-size:.9rem}
-  footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
   footer b{color:#fff;font-family:'Inter',system-ui,sans-serif;font-weight:600}
+  footer .lang-switch{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2)}
+  footer .lang-switch button{color:rgba(255,255,255,.7)}
+  footer .lang-switch button:hover{color:#fff}
+  footer .lang-switch button.active{background:rgba(255,255,255,.25);color:#fff}
 </style>
 </head>
 <body>
@@ -678,7 +682,14 @@
 <footer>
   <div class="wrap">
     <span><b>Apartamento Valdelagrana</b> · El Puerto de Santa María, Cádiz</span>
-    <span data-i18n="footer_note">Alquiler vacacional · ES / FR / EN</span>
+    <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+      <span data-i18n="footer_note">Alquiler temporada</span>
+      <div class="lang-switch" role="group" aria-label="Idioma / Langue / Language">
+        <button data-lang="es" class="active">ES</button>
+        <button data-lang="fr">FR</button>
+        <button data-lang="en">EN</button>
+      </div>
+    </div>
   </div>
 </footer>
 
@@ -747,7 +758,7 @@
       cf_name:"Nombre", cf_email:"Email", cf_message:"Mensaje",
       cf_send:"Enviar",
       cf_captcha:"Por favor, marca la casilla de verificación para continuar.",
-      footer_note:"Alquiler vacacional · ES / FR / EN"
+      footer_note:"Alquiler temporada"
     },
     fr: {
       nav_apartment:"L'appartement", nav_amenities:"Équipements", nav_location:"Localisation",
@@ -803,7 +814,7 @@
       cf_name:"Nom", cf_email:"Email", cf_message:"Message",
       cf_send:"Envoyer",
       cf_captcha:"Veuillez cocher la case de vérification pour continuer.",
-      footer_note:"Location de vacances · ES / FR / EN"
+      footer_note:"Location saisonnière"
     },
     en: {
       nav_apartment:"The apartment", nav_amenities:"Amenities", nav_location:"Location",
@@ -859,7 +870,7 @@
       cf_name:"Name", cf_email:"Email", cf_message:"Message",
       cf_send:"Send",
       cf_captcha:"Please check the verification box to continue.",
-      footer_note:"Holiday rental · ES / FR / EN"
+      footer_note:"Seasonal rental"
     }
   };
 
