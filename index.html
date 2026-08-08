@@ -172,9 +172,16 @@
   @media (max-width:480px){.gal-grid{grid-template-columns:1fr 1fr}.gal-grid picture:last-child img{width:calc(50% - 6px)}}
 
   /* Lightbox */
-  .lightbox{position:fixed;inset:0;background:rgba(20,28,30,.92);display:none;align-items:center;justify-content:center;z-index:100;cursor:zoom-out;padding:20px}
+  .lightbox{position:fixed;inset:0;background:rgba(20,28,30,.92);display:none;align-items:center;justify-content:center;z-index:100;padding:20px}
   .lightbox.open{display:flex}
-  .lightbox img{max-width:94vw;max-height:90vh;border-radius:8px;box-shadow:0 10px 40px rgba(0,0,0,.5)}
+  .lightbox img{max-width:86vw;max-height:86vh;border-radius:8px;box-shadow:0 10px 40px rgba(0,0,0,.5)}
+  .lb-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.15);border:none;color:#fff;width:48px;height:48px;border-radius:50%;font-size:26px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;backdrop-filter:blur(4px)}
+  .lb-btn:hover{background:rgba(255,255,255,.32)}
+  .lb-prev{left:18px}
+  .lb-next{right:18px}
+  .lb-close{top:18px;right:18px;transform:none;font-size:30px}
+  .lb-counter{position:absolute;top:24px;left:0;right:0;text-align:center;color:rgba(255,255,255,.8);font-size:.9rem;pointer-events:none;font-family:'Inter',system-ui,sans-serif}
+  @media (max-width:480px){.lb-btn{width:40px;height:40px;font-size:22px}.lb-prev{left:10px}.lb-next{right:10px}.lb-close{top:10px;right:10px}}
 
   /* Prices */
   .price-note{
@@ -610,7 +617,13 @@
   </div>
 </footer>
 
-<div class="lightbox" id="lightbox"><img id="lbImg" src="" alt=""></div>
+<div class="lightbox" id="lightbox">
+  <div class="lb-counter" id="lbCounter"></div>
+  <button class="lb-btn lb-close" id="lbClose" aria-label="Cerrar">&times;</button>
+  <button class="lb-btn lb-prev" id="lbPrev" aria-label="Anterior">&#8249;</button>
+  <img id="lbImg" src="" alt="">
+  <button class="lb-btn lb-next" id="lbNext" aria-label="Siguiente">&#8250;</button>
+</div>
 
 <script>
 (function(){
@@ -814,11 +827,35 @@
   // Lightbox
   var lb = document.getElementById('lightbox');
   var lbImg = document.getElementById('lbImg');
-  document.querySelectorAll('.gal-grid img').forEach(function(img){
-    img.addEventListener('click', function(){ lbImg.src = img.dataset.fullSrc || img.src; lb.classList.add('open'); });
+  var lbCounter = document.getElementById('lbCounter');
+  var galImgs = Array.prototype.slice.call(document.querySelectorAll('.gal-grid img'));
+  var lbIndex = 0;
+
+  function showLb(i){
+    lbIndex = (i + galImgs.length) % galImgs.length;
+    var img = galImgs[lbIndex];
+    lbImg.src = img.dataset.fullSrc || img.src;
+    lbImg.alt = img.alt;
+    lbCounter.textContent = (lbIndex + 1) + ' / ' + galImgs.length;
+    lb.classList.add('open');
+  }
+  function lbNext(){ showLb(lbIndex + 1); }
+  function lbPrev(){ showLb(lbIndex - 1); }
+  function lbClose(){ lb.classList.remove('open'); }
+
+  galImgs.forEach(function(img, i){
+    img.addEventListener('click', function(){ showLb(i); });
   });
-  lb.addEventListener('click', function(){ lb.classList.remove('open'); });
-  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') lb.classList.remove('open'); });
+  document.getElementById('lbPrev').addEventListener('click', function(e){ e.stopPropagation(); lbPrev(); });
+  document.getElementById('lbNext').addEventListener('click', function(e){ e.stopPropagation(); lbNext(); });
+  document.getElementById('lbClose').addEventListener('click', function(e){ e.stopPropagation(); lbClose(); });
+  lb.addEventListener('click', function(e){ if (e.target === lb) lbClose(); });
+  document.addEventListener('keydown', function(e){
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') lbClose();
+    else if (e.key === 'ArrowRight') lbNext();
+    else if (e.key === 'ArrowLeft') lbPrev();
+  });
 
   // Contact form posts natively to Web3Forms, which redirects to gracias.html
   apply(lang);
