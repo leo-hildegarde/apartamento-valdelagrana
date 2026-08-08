@@ -165,10 +165,6 @@
   .loc-schematic{margin-top:34px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
   .loc-schematic svg{width:100%;height:auto;display:block}
 
-  .loc-map{margin-top:20px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow)}
-  .loc-map iframe{display:block;width:100%;height:380px;border:0}
-  @media (max-width:760px){.loc-map iframe{height:300px}}
-
   /* Gallery */
   .gal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
   .gal-grid img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;cursor:zoom-in;transition:transform .15s ease}
@@ -461,23 +457,22 @@
         <circle cx="440" cy="200" r="5" fill="#0d4d4d"/>
         <text x="451" y="197" font-family="Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#143d3d">Jerez</text>
         <text x="451" y="212" font-family="Inter,system-ui,sans-serif" font-size="11" fill="#6a8a8a">~15 min</text>
-        <!-- Cádiz -->
-        <circle cx="318" cy="285" r="5" fill="#0d4d4d"/>
-        <text x="308" y="282" text-anchor="end" font-family="Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#143d3d">Cádiz</text>
-        <text x="308" y="297" text-anchor="end" font-family="Inter,system-ui,sans-serif" font-size="11" fill="#6a8a8a">~25 min</text>
-        <!-- Valdelagrana (highlighted) -->
-        <circle cx="378" cy="262" r="10" fill="#d9b38c" stroke="#1a6b6b" stroke-width="2.5"/>
-        <circle cx="378" cy="262" r="3.5" fill="#1a6b6b"/>
-        <text x="392" y="258" font-family="Inter,system-ui,sans-serif" font-size="15" font-weight="700" fill="#0d4d4d">Valdelagrana</text>
-        <text x="392" y="274" font-family="Inter,system-ui,sans-serif" font-size="11" fill="#5a7a7a">El Puerto de Santa María</text>
+        <!-- Cádiz (isla en frente) -->
+        <path d="M272,372 C262,360 264,346 280,344 C298,342 316,350 322,362 C328,374 318,386 302,388 C286,390 280,382 272,372 Z" fill="#f5ede0" stroke="#1a6b6b" stroke-width="2"/>
+        <circle cx="298" cy="368" r="4" fill="#0d4d4d"/>
+        <text x="288" y="365" text-anchor="end" font-family="Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#143d3d">Cádiz</text>
+        <text x="288" y="380" text-anchor="end" font-family="Inter,system-ui,sans-serif" font-size="11" fill="#6a8a8a">~25 min (ferry)</text>
+        <!-- Bahía de Cádiz label -->
+        <text x="345" y="358" font-family="Inter,system-ui,sans-serif" font-size="11" fill="#5a8a8f" font-style="italic">Bahía de Cádiz</text>
+        <!-- Valdelagrana (destacado, en la costa) -->
+        <circle cx="378" cy="322" r="10" fill="#d9b38c" stroke="#1a6b6b" stroke-width="2.5"/>
+        <circle cx="378" cy="322" r="3.5" fill="#1a6b6b"/>
+        <text x="392" y="314" font-family="Inter,system-ui,sans-serif" font-size="15" font-weight="700" fill="#0d4d4d">Valdelagrana</text>
+        <text x="392" y="329" font-family="Inter,system-ui,sans-serif" font-size="11" fill="#5a7a7a">El Puerto de Santa María</text>
         <!-- Tarifa -->
         <circle cx="540" cy="360" r="5" fill="#0d4d4d"/>
         <text x="551" y="357" font-family="Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#143d3d">Tarifa</text>
       </svg>
-    </div>
-    <div class="loc-map">
-      <iframe title="Mapa de Valdelagrana" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-        src="https://www.openstreetmap.org/export/embed.html?bbox=-6.260%2C36.560%2C-6.190%2C36.595&layer=mapnik&marker=36.5740%2C-6.2246"></iframe>
     </div>
   </div>
 </section>
